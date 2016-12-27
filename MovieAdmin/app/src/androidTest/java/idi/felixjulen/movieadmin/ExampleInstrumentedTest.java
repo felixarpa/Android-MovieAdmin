@@ -1,13 +1,14 @@
 package idi.felixjulen.movieadmin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import idi.felixjulen.movieadmin.presentation.MovieListViewController;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -20,7 +21,10 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
+        appContext.startActivity(new Intent(appContext, MovieListViewController.class));
 
-        assertEquals("idi.felixjulen.movieadmin", appContext.getPackageName());
+        
+
+        //assertEquals("idi.felixjulen.movieadmin", appContext.getPackageName());
     }
 }

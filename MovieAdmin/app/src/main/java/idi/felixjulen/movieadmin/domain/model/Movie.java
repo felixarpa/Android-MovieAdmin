@@ -19,13 +19,14 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String title, Country country, Integer year, Person director, Person mainCharacter, Integer rate) {
+    public Movie(String title, Country country, Integer year, Person director, Person mainCharacter, Integer rate) throws IncorrectRateException {
         this.title = title;
         this.country = country;
         this.year = year;
         this.director = director;
         this.mainCharacter = mainCharacter;
-        this.rate = rate;
+        setRate(rate);
+
     }
 
     // endregion
@@ -80,7 +81,8 @@ public class Movie {
         this.mainCharacter = mainCharacter;
     }
 
-    public void setRate(Integer rate) {
+    public void setRate(Integer rate) throws IncorrectRateException {
+        if (rate < 0 || rate > 10) throw new IncorrectRateException();
         this.rate = rate;
     }
 

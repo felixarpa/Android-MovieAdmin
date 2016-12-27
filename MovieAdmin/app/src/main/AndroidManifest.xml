@@ -8,14 +8,27 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.BaseViewController"
-            android:screenOrientation="portrait" >
+        <activity
+            android:name=".presentation.MovieListViewController"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.CharacterSearchViewController"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.AboutViewController"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.HelpViewController"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.SettingsViewController"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

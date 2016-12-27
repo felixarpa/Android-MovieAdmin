@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group>
+    <item
+        android:id="@+id/movie_list_item"
+        android:title="@string/movie_list"
+        android:icon="@drawable/format_list_bulleted"
+        />
 
-        <item
-            android:id="@+id/movie_list_item"
-            android:title="@string/movie_list"
-            android:icon="@drawable/format_list_bulleted"
-            />
+    <item
+        android:id="@+id/character_search_item"
+        android:title="@string/character_search"
+        android:icon="@drawable/magnify"
+        />
 
-        <item
-            android:id="@+id/character_search_item"
-            android:title="@string/character_search"
-            android:icon="@drawable/magnify"
-            />
-
-        <item
-            android:id="@+id/settings_item"
-            android:title="@string/settings"
-            android:icon="@drawable/settings"
-            />
-
-    </group>
-
-    <group>
+    <item
+        android:id="@+id/settings_item"
+        android:title="@string/settings"
+        android:icon="@drawable/settings"
+        />
 
     <item
         android:id="@+id/help_item"
@@ -36,7 +30,5 @@
         android:title="@string/about"
         android:icon="@drawable/information_outline"
         />
-
-    </group>
 
 </menu>
