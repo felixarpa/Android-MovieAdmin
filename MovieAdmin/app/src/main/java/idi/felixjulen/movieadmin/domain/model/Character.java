@@ -1,10 +1,34 @@
 package idi.felixjulen.movieadmin.domain.model;
 
-public class Character extends Person {
+import android.graphics.Bitmap;
 
-    public Character(String name, String imageFilePath) {
-        super(name, imageFilePath);
+public class Character {
+
+    private Long _id;
+    private String name;
+    private Bitmap image;
+
+    public Long getId() {
+        return _id;
     }
 
+    public void setId(Long id) {
+        this._id = id;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Bitmap getImage() {
+        return image;
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
+    }
 }

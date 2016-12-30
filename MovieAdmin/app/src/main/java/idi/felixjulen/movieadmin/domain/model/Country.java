@@ -1,35 +1,34 @@
 package idi.felixjulen.movieadmin.domain.model;
 
+import android.graphics.Bitmap;
+
 public class Country {
 
+    private Long _id;
     private String name;
-    private String imageFilePath;
+    private Bitmap image;
 
-    // regionConstructor
-    public Country() {
+    public Long getId() {
+        return _id;
     }
 
-    public Country(String name, String imageFilePath) {
-        this.name = name;
-        this.imageFilePath = imageFilePath;
+    public void setId(Long id) {
+        this._id = id;
     }
-
-    // endregion
-
-    // regionGetters
 
     public String getName() {
         return name;
     }
 
-    public String getImageFilePath() {
-        return imageFilePath;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    // endregion
-
-    public static String createTable() {
-        return "CREATE TABLE COUNTRY (name TEXT PRIMARY KEY, image_file_path TEXT);";
+    public Bitmap getImage() {
+        return image;
     }
 
+    public void setImage(Bitmap image) {
+        this.image = image;
+    }
 }
