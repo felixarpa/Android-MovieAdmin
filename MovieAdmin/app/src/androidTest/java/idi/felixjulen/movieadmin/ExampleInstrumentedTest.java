@@ -23,7 +23,7 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
         appContext.startActivity(new Intent(appContext, MovieListViewController.class));
 
-        
+
 
         //assertEquals("idi.felixjulen.movieadmin", appContext.getPackageName());
     }
