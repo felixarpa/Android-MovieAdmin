@@ -10,28 +10,37 @@ import idi.felixjulen.movieadmin.domain.model.Movie;
 
 public class DBMovieController extends DBController<Movie> {
 
+    private static final String TABLE_NAME = "MOVIE";
+
     public DBMovieController(Context context) {
         super(context, "MOVIE");
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(Movie.createTable());
+        sqLiteDatabase.execSQL(createTable());
     }
 
     @Override
     protected void add(Cursor cursor, ArrayList<Movie> movies) {
-
+        String name = cursor.getString(cursor.getColumnIndex("title"));
+        String imageFilePath = cursor.getString(cursor.getColumnIndex("country"));;
+        /*movies.add(
+                new Movie(name, imageFilePath)
+        );*/
     }
 
     @Override
     public ArrayList<Movie> getAll() {
-        return null;
+        String[] columns = { "title", "country", "year", "director", "main", "rate"};
+        return where(TABLE_NAME, columns, null, null);
     }
 
     @Override
     public ArrayList<Movie> getWhere(String attribute, String value) {
-        return null;
+        String[] columns = { "title", "country", "year", "director", "main", "rate"};
+        String[] where = { value };
+        return where(TABLE_NAME, columns, 0, where);
     }
 
     @Override
@@ -47,5 +56,9 @@ public class DBMovieController extends DBController<Movie> {
     @Override
     public Boolean delete(Movie movie) {
         return null;
+    }
+
+    private static String createTable() {
+        return "CREATE TABLE MOVIE (title TEXT PRIMARY KEY, country TEXT, year INTEGER, director TEXT, main TEXT, rate INTEGER);";
     }
 }

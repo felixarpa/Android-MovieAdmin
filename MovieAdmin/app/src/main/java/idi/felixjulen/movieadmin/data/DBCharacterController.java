@@ -18,7 +18,7 @@ public class DBCharacterController extends DBController<Character> {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(Character.createTable());
+        sqLiteDatabase.execSQL(createTable());
     }
 
     @Override
@@ -56,5 +56,9 @@ public class DBCharacterController extends DBController<Character> {
         characters.add(
                 new Character(name, imageFilePath)
         );
+    }
+
+    private static String createTable() {
+        return "CREATE TABLE CHARACTER (name TEXT PRIMARY KEY, image_file_path TEXT);";
     }
 }

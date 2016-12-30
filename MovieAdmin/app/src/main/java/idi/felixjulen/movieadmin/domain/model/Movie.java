@@ -89,8 +89,6 @@ public class Movie {
     // endregion
 
 
-    public static String createTable() {
-        return "CREATE TABLE MOVIE (title TEXT PRIMARY KEY, country TEXT, year INTEGER, director TEXT, main TEXT, rate INTEGER);";
-    }
+
 
 }
