@@ -6,7 +6,5 @@ public class Character extends Person {
         super(name, imageFilePath);
     }
 
-    public static String createTable() {
-        return "CREATE TABLE CHARACTER (name TEXT PRIMARY KEY, image_file_path TEXT);";
-    }
+
 }
