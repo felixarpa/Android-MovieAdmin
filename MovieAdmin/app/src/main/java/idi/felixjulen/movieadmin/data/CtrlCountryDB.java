@@ -11,6 +11,7 @@ import android.util.Base64;
 import java.util.ArrayList;
 
 import idi.felixjulen.movieadmin.domain.dataInterface.CtrlCountry;
+import idi.felixjulen.movieadmin.domain.model.Character;
 import idi.felixjulen.movieadmin.domain.model.Country;
 
 

@@ -4,6 +4,8 @@ import android.content.ContentValues;
 
 import java.util.ArrayList;
 
+import idi.felixjulen.movieadmin.domain.model.Character;
+
 public interface CtrlEntity<T> {
 
     Long insert(ContentValues values);
