@@ -20,9 +20,8 @@ import idi.felixjulen.movieadmin.R;
 public abstract class BaseViewController extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected Toolbar toolbar;
-    protected DrawerLayout drawerLayout;
-    protected FrameLayout frameLayout;
     protected ActionBarDrawerToggle toggle;
+    protected DrawerLayout drawerLayout;
 
     private final Integer[] CHECKED_ICONS = new Integer[] {
             R.drawable.movie,
@@ -37,7 +36,10 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_view);
+        setUpViews();
+    }
 
+    private void setUpViews() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,7 +53,7 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
         navigationView.setNavigationItemSelectedListener(this);
 
         Integer position = getMenuPosition();
-        Integer accentColor = ContextCompat.getColor(getApplicationContext(), R.color.md_red_300);
+        Integer accentColor = ContextCompat.getColor(getApplicationContext(), R.color.colorAccent);
 
         Drawable icon = getDrawable(CHECKED_ICONS[position]);
         assert icon != null;
@@ -60,6 +62,14 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
         navigationView.getMenu().getItem(position).setIcon(icon);
         navigationView.getMenu().getItem(position).setChecked(true);
 
+    }
+
+    public void setContentFrame(int layoutResID) {
+        DrawerLayout drawerLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.base_view, null);
+        FrameLayout frameLayout = (FrameLayout) drawerLayout.findViewById(R.id.main_frame);
+        getLayoutInflater().inflate(layoutResID, frameLayout, true);
+        super.setContentView(drawerLayout);
+        setUpViews();
     }
 
     @Override
@@ -72,7 +82,7 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
                 break;
 
             case R.id.character_search_item:
-                //intent = new Intent(this, CharacterSearchViewController.class);
+                intent = new Intent(this, CharacterSearchViewController.class);
                 break;
 
             case R.id.settings_item:

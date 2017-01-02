@@ -1,4 +1,4 @@
-package idi.felixjulen.movieadmin.data;
+package idi.felixjulen.movieadmin.data.controller;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,8 +25,6 @@ public class DBController extends SQLiteOpenHelper {
 
     public static final String TABLE_CHARACTER = "characters";
 
-    public static final String TABLE_COUNTRY = "country";
-
     // Database creation sql statement
     private static final String CREATE_FILM =
             "create table " + TABLE_FILMS + "( "
@@ -43,21 +41,14 @@ public class DBController extends SQLiteOpenHelper {
             "create table " + TABLE_DIRECTOR + "( "
             + COLUMN_ID + " integer primary key autoincrement, "
             + COLUMN_NAME + " text not null, "
-            + COLUMN_IMAGE + " text not null, "
+            + COLUMN_IMAGE + " text"
             + ");";
 
     private static final String CREATE_CHARACTER =
             "create table " + TABLE_CHARACTER + "( "
             + COLUMN_ID + " integer primary key autoincrement, "
             + COLUMN_NAME + " text not null, "
-            + COLUMN_IMAGE + " text not null, "
-            + ");";
-
-    private static final String CREATE_COUNTRY =
-            "create table " + TABLE_COUNTRY + "( "
-            + COLUMN_ID + " integer primary key autoincrement, "
-            + COLUMN_NAME + " text not null, "
-            + COLUMN_IMAGE + " text not null, "
+            + COLUMN_IMAGE + " text"
             + ");";
 
 
@@ -71,18 +62,16 @@ public class DBController extends SQLiteOpenHelper {
         database.execSQL(CREATE_FILM);
         database.execSQL(CREATE_DIRECTOR);
         database.execSQL(CREATE_CHARACTER);
-        database.execSQL(COLUMN_COUNTRY);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(MySQLiteHelper.class.getName(),
+        Log.w(DBController.class.getName(),
                 "Upgrading database from version " + oldVersion + " to "
                         + newVersion + ", which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FILMS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DIRECTOR);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHARACTER);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_COUNTRY);
         onCreate(db);
     }
 }

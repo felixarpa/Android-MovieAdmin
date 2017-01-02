@@ -9,7 +9,8 @@ public class MovieListViewController extends BaseViewController {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.movie_list_view, frameLayout, true);
+        setContentFrame(R.layout.movie_list_view);
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package idi.felixjulen.movieadmin.data;
+package idi.felixjulen.movieadmin.data.controller;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,8 +13,9 @@ import idi.felixjulen.movieadmin.domain.model.Film;
 
 public class CtrlFilmDB implements CtrlFilm {
 
-    private SQLiteDatabase writableDatabase;
-    private SQLiteDatabase readableDatabase;
+    private static CtrlFilm instance;
+    private static SQLiteDatabase writableDatabase;
+    private static SQLiteDatabase readableDatabase;
     private String[] columns = {
             DBController.COLUMN_ID,
             DBController.COLUMN_TITLE,
@@ -25,7 +26,14 @@ public class CtrlFilmDB implements CtrlFilm {
             DBController.COLUMN_RATE,
     };
 
-    public CtrlFilmDB(Context context) {
+    public static CtrlFilm getInstance(Context context) {
+        if (instance == null) {
+            instance = new CtrlFilmDB(context);
+        }
+        return instance;
+    }
+
+    private CtrlFilmDB(Context context) {
         DBController databaseController = new DBController(context);
         writableDatabase = databaseController.getWritableDatabase();
         readableDatabase = databaseController.getReadableDatabase();
@@ -94,6 +102,31 @@ public class CtrlFilmDB implements CtrlFilm {
                 null
         );
         return updates > 0;
+    }
+
+    @Override
+    public void purge() {
+        writableDatabase.delete(DBController.TABLE_FILMS, null, null);
+    }
+
+    @Override
+    public ArrayList<Film> getByCharacter(Long id) {
+        String[] selectionArgs = new String[] { String.valueOf(id) };
+        Cursor cursor = readableDatabase.query(
+                DBController.TABLE_FILMS,
+                columns,
+                DBController.COLUMN_MAIN_CHARACTER + " = ?",
+                selectionArgs,
+                null, null, null
+        );
+        ArrayList<Film> result = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                result.add(cursorToFilm(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return result;
     }
 
     private Film cursorToFilm(Cursor cursor) {

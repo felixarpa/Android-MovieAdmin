@@ -1,4 +1,4 @@
-package idi.felixjulen.movieadmin.data;
+package idi.felixjulen.movieadmin.data.controller;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,10 +10,11 @@ import android.util.Base64;
 
 import java.util.ArrayList;
 
-import idi.felixjulen.movieadmin.domain.dataInterface.CtrlCharacter;
-import idi.felixjulen.movieadmin.domain.model.Character;
+import idi.felixjulen.movieadmin.domain.dataInterface.CtrlDirector;
+import idi.felixjulen.movieadmin.domain.model.Director;
 
-public class CtrlCharacterDB implements CtrlCharacter {
+
+public class CtrlDirectorDB implements CtrlDirector {
 
     private SQLiteDatabase writableDatabase;
     private SQLiteDatabase readableDatabase;
@@ -23,7 +24,7 @@ public class CtrlCharacterDB implements CtrlCharacter {
             DBController.COLUMN_IMAGE
     };
 
-    public CtrlCharacterDB(Context context) {
+    public CtrlDirectorDB(Context context) {
         DBController databaseController = new DBController(context);
         writableDatabase = databaseController.getWritableDatabase();
         readableDatabase = databaseController.getReadableDatabase();
@@ -32,7 +33,7 @@ public class CtrlCharacterDB implements CtrlCharacter {
     @Override
     public Long insert(ContentValues values) {
         return writableDatabase.insert(
-                DBController.TABLE_CHARACTER,
+                DBController.TABLE_DIRECTOR,
                 null,
                 values
         );
@@ -41,7 +42,7 @@ public class CtrlCharacterDB implements CtrlCharacter {
     @Override
     public Boolean delete(Long id) {
         Integer deletions = writableDatabase.delete(
-                DBController.TABLE_CHARACTER,
+                DBController.TABLE_DIRECTOR,
                 DBController.COLUMN_ID + " = " + id,
                 null
         );
@@ -49,34 +50,34 @@ public class CtrlCharacterDB implements CtrlCharacter {
     }
 
     @Override
-    public Character get(Long id) {
+    public Director get(Long id) {
         Cursor cursor = readableDatabase.query(
-                DBController.TABLE_COUNTRY,
+                DBController.TABLE_DIRECTOR,
                 columns,
                 DBController.COLUMN_ID + " = " + id,
                 null, null, null, null
         );
-        Character result;
+        Director result;
         if (cursor.moveToFirst()) {
-            result = cursorToCharacter(cursor);
+            result = cursorToDirector(cursor);
         } else {
-            result = new Character();
+            result = new Director();
         }
         cursor.close();
         return result;
     }
 
     @Override
-    public ArrayList<Character> all() {
+    public ArrayList<Director> all() {
         Cursor cursor = readableDatabase.query(
-                DBController.TABLE_CHARACTER,
+                DBController.TABLE_DIRECTOR,
                 columns,
                 null, null, null, null, null
         );
-        ArrayList<Character> result = new ArrayList<>();
+        ArrayList<Director> result = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
-                result.add(cursorToCharacter(cursor));
+                result.add(cursorToDirector(cursor));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -86,7 +87,7 @@ public class CtrlCharacterDB implements CtrlCharacter {
     @Override
     public Boolean update(Long id, ContentValues values) {
         Integer updates = writableDatabase.update(
-                DBController.TABLE_CHARACTER,
+                DBController.TABLE_DIRECTOR,
                 values,
                 DBController.COLUMN_ID + " = " + id,
                 null
@@ -94,8 +95,13 @@ public class CtrlCharacterDB implements CtrlCharacter {
         return updates > 0;
     }
 
-    private Character cursorToCharacter(Cursor cursor) {
-        Character result = new Character();
+    @Override
+    public void purge() {
+        writableDatabase.delete(DBController.TABLE_DIRECTOR, null, null);
+    }
+
+    private Director cursorToDirector(Cursor cursor) {
+        Director result = new Director();
         result.setId(cursor.getLong(cursor.getColumnIndex(DBController.COLUMN_ID)));
         result.setName(cursor.getString(cursor.getColumnIndex(DBController.COLUMN_NAME)));
         String image = cursor.getString(cursor.getColumnIndex(DBController.COLUMN_IMAGE));

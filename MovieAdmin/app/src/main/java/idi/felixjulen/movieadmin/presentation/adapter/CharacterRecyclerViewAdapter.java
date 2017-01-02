@@ -27,7 +27,7 @@ public class CharacterRecyclerViewAdapter extends RecyclerView.Adapter<Character
     @Override
     public AdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.charcater_row_layout, parent, false);
+        View view = layoutInflater.inflate(R.layout.character_row_layout, parent, false);
         return new AdapterViewHolder(view);
     }
 
@@ -49,6 +49,10 @@ public class CharacterRecyclerViewAdapter extends RecyclerView.Adapter<Character
         return characters.size();
     }
 
+    public void setCharacters(ArrayList<Character> characters) {
+        this.characters = characters;
+    }
+
     class AdapterViewHolder extends RecyclerView.ViewHolder {
 
         private View itemView;
@@ -58,7 +62,8 @@ public class CharacterRecyclerViewAdapter extends RecyclerView.Adapter<Character
         public AdapterViewHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
-            //this.
+            this.imageView = (ImageView) this.itemView.findViewById(R.id.image);
+            this.nameView = (TextView) this.itemView.findViewById(R.id.name);
         }
     }
 }

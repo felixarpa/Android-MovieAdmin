@@ -19,20 +19,21 @@ import idi.felixjulen.movieadmin.presentation.view.fragments.RecyclerViewFragmen
 public class CharacterSearchViewController extends FragmentBaseViewController {
 
     private SearchView searchView;
+    private RecyclerViewFragment recyclerViewFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.character_search_view, frameLayout, true);
+        setContentFrame(R.layout.character_search_view);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(R.string.character_search);
         }
 
-        RecyclerViewFragment recyclerViewFragment = new RecyclerViewFragment();
+        recyclerViewFragment = new RecyclerViewFragment();
         CharacterViewFragment characterViewFragment = new CharacterViewFragment();
 
         SwipeViewPager pager = (SwipeViewPager) findViewById(R.id.pager);
-        assert pager != null;
+        //if (pager == null) return;
         pager.setAdapter(new PagerViewAdapter(getSupportFragmentManager(), recyclerViewFragment, characterViewFragment));
 
         pager.setCurrentItem(0);
@@ -45,19 +46,7 @@ public class CharacterSearchViewController extends FragmentBaseViewController {
 
         MenuItem menuItem = menu.findItem(R.id.search_item);
         searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-        searchView.setOnQueryTextListener(
-                new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String s) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String s) {
-                        return false;
-                    }
-                }
-        );
+        searchView.setOnQueryTextListener(recyclerViewFragment);
 
         int searchCloseButtonId = searchView.getContext().getResources()
                 .getIdentifier("android:id/search_close_btn", null, null);
