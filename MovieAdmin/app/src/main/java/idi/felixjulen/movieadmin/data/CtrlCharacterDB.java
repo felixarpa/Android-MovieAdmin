@@ -67,7 +67,7 @@ public class CtrlCharacterDB implements CtrlCharacter {
     }
 
     @Override
-    public ArrayList all() {
+    public ArrayList<Character> all() {
         Cursor cursor = readableDatabase.query(
                 DBController.TABLE_CHARACTER,
                 columns,

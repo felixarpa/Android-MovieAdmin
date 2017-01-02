@@ -12,7 +12,7 @@ public class Film {
     private Long _id;
     private String title;
     private Integer director;
-    private Integer country;
+    private String country;
     private Integer year;
     private Integer protagonist;
     private Integer rate;
@@ -41,11 +41,11 @@ public class Film {
         this.director = director;
     }
 
-    public Integer getCountry() {
+    public String getCountry() {
         return country;
     }
 
-    public void setCountry(Integer country) {
+    public void setCountry(String country) {
         this.country = country;
     }
 
