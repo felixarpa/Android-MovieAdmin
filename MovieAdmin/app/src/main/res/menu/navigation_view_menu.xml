@@ -4,13 +4,13 @@
     <item
         android:id="@+id/movie_list_item"
         android:title="@string/movie_list"
-        android:icon="@drawable/format_list_bulleted"
+        android:icon="@drawable/movie"
         />
 
     <item
         android:id="@+id/character_search_item"
         android:title="@string/character_search"
-        android:icon="@drawable/magnify"
+        android:icon="@drawable/account_outline"
         />
 
     <item

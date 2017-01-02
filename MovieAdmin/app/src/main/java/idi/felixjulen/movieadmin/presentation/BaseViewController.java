@@ -9,7 +9,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SearchViewCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,20 +20,13 @@ import idi.felixjulen.movieadmin.R;
 public abstract class BaseViewController extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected Toolbar toolbar;
-    private DrawerLayout drawerLayout;
+    protected DrawerLayout drawerLayout;
     protected FrameLayout frameLayout;
-
-    private final Integer[] ICONS = new Integer[] {
-            R.drawable.format_list_bulleted,
-            R.drawable.magnify,
-            R.drawable.settings,
-            R.drawable.help_circle_outline,
-            R.drawable.information_outline
-    };
+    protected ActionBarDrawerToggle toggle;
 
     private final Integer[] CHECKED_ICONS = new Integer[] {
-            R.drawable.format_list_bulleted,
-            R.drawable.account_search,
+            R.drawable.movie,
+            R.drawable.account,
             R.drawable.settings,
             R.drawable.help_circle,
             R.drawable.information
@@ -50,7 +42,7 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
         setSupportActionBar(toolbar);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.openDrawer, R.string.closeDrawer);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -59,7 +51,7 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
         navigationView.setNavigationItemSelectedListener(this);
 
         Integer position = getMenuPosition();
-        Integer accentColor = ContextCompat.getColor(getApplicationContext(), R.color.colorAccent);
+        Integer accentColor = ContextCompat.getColor(getApplicationContext(), R.color.md_red_300);
 
         Drawable icon = getDrawable(CHECKED_ICONS[position]);
         assert icon != null;
@@ -80,7 +72,7 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
                 break;
 
             case R.id.character_search_item:
-                intent = new Intent(this, SearchViewCompat.class);
+                //intent = new Intent(this, CharacterSearchViewController.class);
                 break;
 
             case R.id.settings_item:

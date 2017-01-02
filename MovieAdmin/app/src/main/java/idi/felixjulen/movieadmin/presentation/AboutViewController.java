@@ -10,6 +10,7 @@ public class AboutViewController extends BaseViewController {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.about_view, frameLayout, true);
+        toolbar.setTitle(R.string.about);
     }
 
     @Override
