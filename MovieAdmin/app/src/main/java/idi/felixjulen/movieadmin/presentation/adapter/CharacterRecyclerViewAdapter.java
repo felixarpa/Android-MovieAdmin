@@ -49,10 +49,6 @@ public class CharacterRecyclerViewAdapter extends RecyclerView.Adapter<Character
         return characters.size();
     }
 
-    public void setCharacters(ArrayList<Character> characters) {
-        this.characters = characters;
-    }
-
     class AdapterViewHolder extends RecyclerView.ViewHolder {
 
         private View itemView;

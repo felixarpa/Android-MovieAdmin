@@ -1,4 +1,4 @@
-package idi.felixjulen.movieadmin.data.controller;
+package idi.felixjulen.movieadmin.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

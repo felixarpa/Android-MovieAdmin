@@ -6,8 +6,8 @@ import android.content.Context;
 import java.util.ArrayList;
 
 import idi.felixjulen.movieadmin.R;
-import idi.felixjulen.movieadmin.data.controller.CtrlCharacterDB;
-import idi.felixjulen.movieadmin.data.controller.DBController;
+import idi.felixjulen.movieadmin.data.CtrlCharacterDB;
+import idi.felixjulen.movieadmin.data.DBController;
 import idi.felixjulen.movieadmin.domain.dataInterface.CtrlCharacter;
 import idi.felixjulen.movieadmin.domain.model.Character;
 
@@ -60,8 +60,18 @@ public class CharacterData implements DefaultDataController<Character> {
         return ctrl.all();
     }
 
+    @Override
+    public Character get(Long id) {
+        return ctrl.get(id);
+    }
+
     public ArrayList<Character> search(String filter) {
-        return ctrl.search(filter);
+        ArrayList<Character> all = ctrl.all();
+        ArrayList<Character> result = new ArrayList<>();
+        for (Character character : all) {
+            if (character.getName().contains(filter)) result.add(character);
+        }
+        return result;
     }
 
 }

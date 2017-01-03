@@ -31,11 +31,16 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
             R.drawable.information
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.base_view);
+    }
+
+    public void setContentFrame(int layoutResID) {
+        DrawerLayout baseView = (DrawerLayout) getLayoutInflater().inflate(R.layout.base_view, null);
+        FrameLayout whereTheContentGoes = (FrameLayout) baseView.findViewById(R.id.main_frame);
+        getLayoutInflater().inflate(layoutResID, whereTheContentGoes, true);
+        super.setContentView(baseView);
         setUpViews();
     }
 
@@ -61,15 +66,6 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
 
         navigationView.getMenu().getItem(position).setIcon(icon);
         navigationView.getMenu().getItem(position).setChecked(true);
-
-    }
-
-    public void setContentFrame(int layoutResID) {
-        DrawerLayout drawerLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.base_view, null);
-        FrameLayout frameLayout = (FrameLayout) drawerLayout.findViewById(R.id.main_frame);
-        getLayoutInflater().inflate(layoutResID, frameLayout, true);
-        super.setContentView(drawerLayout);
-        setUpViews();
     }
 
     @Override

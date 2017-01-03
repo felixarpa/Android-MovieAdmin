@@ -22,6 +22,8 @@
         <item name="actionMenuTextColor">@android:color/white</item>
     </style>
 
+
+
     <style name="ImageListStyle">
         <item name="android:contentDescription">@string/content_description</item>
         <item name="android:layout_width">64dp</item>
@@ -32,6 +34,15 @@
         <item name="android:layout_marginStart">16dp</item>
         <item name="android:layout_alignParentTop">true</item>
         <item name="android:layout_alignParentStart">true</item>
+    </style>
+
+    <style name="ImageProfile">
+        <item name="android:contentDescription">@string/content_description</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
     </style>
 
 </resources>

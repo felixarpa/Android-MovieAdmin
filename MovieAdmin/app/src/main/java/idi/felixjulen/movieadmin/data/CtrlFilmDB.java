@@ -1,4 +1,4 @@
-package idi.felixjulen.movieadmin.data.controller;
+package idi.felixjulen.movieadmin.data;
 
 import android.content.ContentValues;
 import android.content.Context;

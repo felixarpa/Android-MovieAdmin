@@ -1,43 +1,71 @@
 package idi.felixjulen.movieadmin.presentation;
 
-import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import idi.felixjulen.movieadmin.R;
-import idi.felixjulen.movieadmin.presentation.adapter.PagerViewAdapter;
-import idi.felixjulen.movieadmin.presentation.view.SwipeViewPager;
-import idi.felixjulen.movieadmin.presentation.view.fragments.CharacterViewFragment;
-import idi.felixjulen.movieadmin.presentation.view.fragments.RecyclerViewFragment;
+import idi.felixjulen.movieadmin.domain.controller.CharacterData;
+import idi.felixjulen.movieadmin.domain.model.Character;
+import idi.felixjulen.movieadmin.presentation.adapter.CharacterRecyclerViewAdapter;
+import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemClick;
 
-public class CharacterSearchViewController extends FragmentBaseViewController {
+public class CharacterSearchViewController extends BaseViewController implements OnRecyclerViewItemClick, SearchView.OnQueryTextListener {
 
     private SearchView searchView;
-    private RecyclerViewFragment recyclerViewFragment;
+    private RecyclerView recyclerView;
+    private TextView emptyTextView;
+    private CharacterData data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentFrame(R.layout.character_search_view);
+        setContentFrame(R.layout.recycler_view_fragment);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(R.string.character_search);
         }
 
-        recyclerViewFragment = new RecyclerViewFragment();
-        CharacterViewFragment characterViewFragment = new CharacterViewFragment();
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        emptyTextView = (TextView) findViewById(R.id.empty);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        SwipeViewPager pager = (SwipeViewPager) findViewById(R.id.pager);
-        //if (pager == null) return;
-        pager.setAdapter(new PagerViewAdapter(getSupportFragmentManager(), recyclerViewFragment, characterViewFragment));
+        findViewById(R.id.add_character).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
 
-        pager.setCurrentItem(0);
+                    }
+                }
+        );
 
+        data = CharacterData.getInstance(this);
+        data.makeDefault();
+
+        setListContent(null);
+    }
+
+    private void setListContent(String filter) {
+        ArrayList<Character> characters = (filter != null) ? data.search(filter) : data.list();
+        CharacterRecyclerViewAdapter adapter = new CharacterRecyclerViewAdapter(characters, this);
+        if (characters.size() == 0) {
+            emptyTextView.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            emptyTextView.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            recyclerView.setAdapter(adapter);
+        }
     }
 
     @Override
@@ -46,7 +74,7 @@ public class CharacterSearchViewController extends FragmentBaseViewController {
 
         MenuItem menuItem = menu.findItem(R.id.search_item);
         searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-        searchView.setOnQueryTextListener(recyclerViewFragment);
+        searchView.setOnQueryTextListener(this);
 
         int searchCloseButtonId = searchView.getContext().getResources()
                 .getIdentifier("android:id/search_close_btn", null, null);
@@ -86,7 +114,21 @@ public class CharacterSearchViewController extends FragmentBaseViewController {
     }
 
     @Override
-    public void onFragmentAction(ContentValues values) {
+    public boolean onQueryTextSubmit(String query) {
+        setListContent(query);
+        return true;
+    }
 
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        setListContent(newText);
+        return true;
+    }
+
+    @Override
+    public void onRecyclerViewItemClick(Integer position, Long itemEntityId) {
+        Intent intent = new Intent(this, CharacterViewController.class);
+        intent.putExtra(getString(R.string.itemEntityId), itemEntityId);
+        startActivity(intent);
     }
 }

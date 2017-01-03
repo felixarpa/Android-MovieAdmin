@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_white_1000">
+
+    <ImageView
+        android:id="@+id/image"
+        style="@style/ImageProfile"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/film"/>
+
+    <ImageView
+        style="@style/ImageProfile"
+        android:src="@mipmap/template"
+        android:tint="@color/md_white_1000"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="64dp"
+        android:textSize="24sp"
+        android:text="@string/jennifer_lawrence_name"
+        android:textColor="@color/md_black_1000"
+        android:maxLines="1"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_below="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
+
+</RelativeLayout>

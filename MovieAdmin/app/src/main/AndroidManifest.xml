@@ -29,6 +29,9 @@
         <activity
             android:name=".presentation.SettingsViewController"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.CharacterViewController"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

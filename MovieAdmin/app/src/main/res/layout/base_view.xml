@@ -7,8 +7,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:openDrawer="start"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@color/md_white_1000"
+    tools:openDrawer="start" >
 
     <LinearLayout
         android:layout_width="match_parent"
