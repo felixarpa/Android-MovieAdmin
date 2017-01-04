@@ -5,6 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import idi.felixjulen.movieadmin.domain.controller.CharacterData;
+import idi.felixjulen.movieadmin.domain.controller.DirectorData;
+import idi.felixjulen.movieadmin.domain.controller.FilmData;
+
 public class DBController extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "films.db";
@@ -50,10 +54,12 @@ public class DBController extends SQLiteOpenHelper {
             + COLUMN_NAME + " text not null, "
             + COLUMN_IMAGE + " text"
             + ");";
+    private final Context context;
 
 
     public DBController(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
 
@@ -62,6 +68,9 @@ public class DBController extends SQLiteOpenHelper {
         database.execSQL(CREATE_FILM);
         database.execSQL(CREATE_DIRECTOR);
         database.execSQL(CREATE_CHARACTER);
+        CharacterData.getInstance(context).makeDefault();
+        DirectorData.getInstance(context);//.makeDefault();
+        FilmData.getInstance(context).makeDefault();
     }
 
     @Override

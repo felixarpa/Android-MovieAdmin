@@ -66,10 +66,12 @@ public class CharacterData implements DefaultDataController<Character> {
     }
 
     public ArrayList<Character> search(String filter) {
+        String upperFilter = filter.toUpperCase();
         ArrayList<Character> all = ctrl.all();
         ArrayList<Character> result = new ArrayList<>();
         for (Character character : all) {
-            if (character.getName().contains(filter)) result.add(character);
+            String name = character.getName().toUpperCase();
+            if (name.contains(upperFilter)) result.add(character);
         }
         return result;
     }

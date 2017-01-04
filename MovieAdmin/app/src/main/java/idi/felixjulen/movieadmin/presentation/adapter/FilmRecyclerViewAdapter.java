@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class FilmRecyclerViewAdapter extends RecyclerView.Adapter<FilmRecyclerVi
     @Override
     public AdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.character_row_layout, parent, false);
+        View view = layoutInflater.inflate(R.layout.film_row_layout, parent, false);
         return new AdapterViewHolder(view);
     }
 
@@ -48,10 +47,6 @@ public class FilmRecyclerViewAdapter extends RecyclerView.Adapter<FilmRecyclerVi
         return films.size();
     }
 
-    public void setCharacters(ArrayList<Film> films) {
-        this.films = films;
-    }
-
     class AdapterViewHolder extends RecyclerView.ViewHolder {
 
         private View itemView;
@@ -61,8 +56,8 @@ public class FilmRecyclerViewAdapter extends RecyclerView.Adapter<FilmRecyclerVi
         public AdapterViewHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
-            this.rateView = (TextView) this.itemView.findViewById(R.id.rate);
             this.nameView = (TextView) this.itemView.findViewById(R.id.title);
+            this.rateView = (TextView) this.itemView.findViewById(R.id.rate);
         }
     }
 }

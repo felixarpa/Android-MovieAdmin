@@ -124,4 +124,22 @@ public class CtrlCharacterDB implements CtrlCharacter {
         cursor.close();
         return result;
     }
+
+    @Override
+    public Character getByName(String name) {
+        Cursor cursor = readableDatabase.query(
+                DBController.TABLE_CHARACTER,
+                columns,
+                DBController.COLUMN_NAME + " = ?",
+                new String[]{name}, null, null, null
+        );
+        Character result;
+        if (cursor.moveToFirst()) {
+            result = cursorToCharacter(cursor);
+        } else {
+            result = new Character();
+        }
+        cursor.close();
+        return result;
+    }
 }

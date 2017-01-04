@@ -13,18 +13,25 @@ import java.util.ArrayList;
 import idi.felixjulen.movieadmin.domain.dataInterface.CtrlDirector;
 import idi.felixjulen.movieadmin.domain.model.Director;
 
-
 public class CtrlDirectorDB implements CtrlDirector {
 
-    private SQLiteDatabase writableDatabase;
-    private SQLiteDatabase readableDatabase;
+    private static CtrlDirector instance;
+    private static SQLiteDatabase writableDatabase;
+    private static SQLiteDatabase readableDatabase;
     private String[] columns = {
             DBController.COLUMN_ID,
             DBController.COLUMN_NAME,
             DBController.COLUMN_IMAGE
     };
 
-    public CtrlDirectorDB(Context context) {
+    public static CtrlDirector getInstance(Context context) {
+        if (instance == null) {
+            instance = new CtrlDirectorDB(context);
+        }
+        return instance;
+    }
+
+    private CtrlDirectorDB(Context context) {
         DBController databaseController = new DBController(context);
         writableDatabase = databaseController.getWritableDatabase();
         readableDatabase = databaseController.getReadableDatabase();
@@ -74,14 +81,7 @@ public class CtrlDirectorDB implements CtrlDirector {
                 columns,
                 null, null, null, null, null
         );
-        ArrayList<Director> result = new ArrayList<>();
-        if (cursor.moveToFirst()) {
-            do {
-                result.add(cursorToDirector(cursor));
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return result;
+        return directorArrayListFrom(cursor);
     }
 
     @Override
@@ -112,5 +112,16 @@ public class CtrlDirectorDB implements CtrlDirector {
     private Bitmap stringToBitmap(String str) {
         byte[] decodedString = Base64.decode(str, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+    }
+
+    private ArrayList<Director> directorArrayListFrom(Cursor cursor) {
+        ArrayList<Director> result = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                result.add(cursorToDirector(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return result;
     }
 }

@@ -4,4 +4,6 @@ import idi.felixjulen.movieadmin.domain.model.Character;
 
 public interface CtrlCharacter extends CtrlEntity<Character> {
 
+    Character getByName(String name);
+
 }
