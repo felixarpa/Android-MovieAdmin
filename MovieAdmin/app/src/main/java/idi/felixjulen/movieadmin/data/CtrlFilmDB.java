@@ -4,6 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 
 import java.util.ArrayList;
 
@@ -24,6 +27,7 @@ public class CtrlFilmDB implements CtrlFilm {
             DBController.COLUMN_DIRECTOR,
             DBController.COLUMN_MAIN_CHARACTER,
             DBController.COLUMN_RATE,
+            DBController.COLUMN_IMAGE
     };
 
     public static CtrlFilm getInstance(Context context) {
@@ -129,14 +133,22 @@ public class CtrlFilmDB implements CtrlFilm {
         return result;
     }
 
+    private Bitmap stringToBitmap(String str) {
+        byte[] decodedString = Base64.decode(str, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+    }
+
     private Film cursorToFilm(Cursor cursor) {
         Film result = new Film();
         result.setId(cursor.getLong(cursor.getColumnIndex(DBController.COLUMN_ID)));
         result.setTitle(cursor.getString(cursor.getColumnIndex(DBController.COLUMN_TITLE)));
         result.setCountry(cursor.getString(cursor.getColumnIndex(DBController.COLUMN_COUNTRY)));
-        result.setTitle(cursor.getString(cursor.getColumnIndex(DBController.COLUMN_TITLE)));
-        result.setTitle(cursor.getString(cursor.getColumnIndex(DBController.COLUMN_TITLE)));
-        result.setTitle(cursor.getString(cursor.getColumnIndex(DBController.COLUMN_TITLE)));
+        result.setYear(cursor.getInt(cursor.getColumnIndex(DBController.COLUMN_YEAR)));
+        result.setDirector(cursor.getInt(cursor.getColumnIndex(DBController.COLUMN_DIRECTOR)));
+        result.setProtagonist(cursor.getInt(cursor.getColumnIndex(DBController.COLUMN_MAIN_CHARACTER)));
+        result.setRate(cursor.getInt(cursor.getColumnIndex(DBController.COLUMN_RATE)));
+        String image = cursor.getString(cursor.getColumnIndex(DBController.COLUMN_IMAGE));
+        result.setImage(stringToBitmap(image));
         return result;
     }
 

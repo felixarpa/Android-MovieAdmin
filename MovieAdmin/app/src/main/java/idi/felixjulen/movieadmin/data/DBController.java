@@ -5,17 +5,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import idi.felixjulen.movieadmin.domain.controller.CharacterData;
-import idi.felixjulen.movieadmin.domain.controller.DirectorData;
-import idi.felixjulen.movieadmin.domain.controller.FilmData;
-
 public class DBController extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "films.db";
     private static final int DATABASE_VERSION = 1;
 
-    public static final String TABLE_FILMS = "films";
-    public static final String COLUMN_ID = "_id";
+    static final String TABLE_FILMS = "films";
+    static final String COLUMN_ID = "_id";
     public static final String COLUMN_TITLE = "title";
     public static final String COLUMN_COUNTRY = "country";
     public static final String COLUMN_YEAR = "year";
@@ -23,17 +19,18 @@ public class DBController extends SQLiteOpenHelper {
     public static final String COLUMN_MAIN_CHARACTER = "main_character";
     public static final String COLUMN_RATE = "rate";
 
-    public static final String TABLE_DIRECTOR = "directors";
+    static final String TABLE_DIRECTOR = "directors";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_IMAGE = "image";
 
-    public static final String TABLE_CHARACTER = "characters";
+    static final String TABLE_CHARACTER = "characters";
 
     // Database creation sql statement
     private static final String CREATE_FILM =
             "create table " + TABLE_FILMS + "( "
             + COLUMN_ID + " integer primary key autoincrement, "
             + COLUMN_TITLE + " text not null, "
+            + COLUMN_IMAGE + " text, "
             + COLUMN_COUNTRY + " text not null, "
             + COLUMN_YEAR + " integer not null, "
             + COLUMN_DIRECTOR + " integer not null, "
@@ -54,12 +51,10 @@ public class DBController extends SQLiteOpenHelper {
             + COLUMN_NAME + " text not null, "
             + COLUMN_IMAGE + " text"
             + ");";
-    private final Context context;
 
 
     public DBController(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.context = context;
     }
 
 
@@ -68,9 +63,6 @@ public class DBController extends SQLiteOpenHelper {
         database.execSQL(CREATE_FILM);
         database.execSQL(CREATE_DIRECTOR);
         database.execSQL(CREATE_CHARACTER);
-        CharacterData.getInstance(context).makeDefault();
-        DirectorData.getInstance(context);//.makeDefault();
-        FilmData.getInstance(context).makeDefault();
     }
 
     @Override

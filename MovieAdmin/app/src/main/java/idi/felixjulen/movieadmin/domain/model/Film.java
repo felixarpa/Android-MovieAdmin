@@ -1,5 +1,7 @@
 package idi.felixjulen.movieadmin.domain.model;
 
+import android.graphics.Bitmap;
+
 /**
  * Film
  * Created by pr_idi on 10/11/16.
@@ -16,6 +18,7 @@ public class Film {
     private Integer year;
     private Integer protagonist;
     private Integer rate;
+    private Bitmap image;
 
     public Long getId() {
         return _id;
@@ -73,9 +76,11 @@ public class Film {
         this.rate = rate;
     }
 
-    // Will be used by the ArrayAdapter in the ListView
-    @Override
-    public String toString() {
-        return String.format("%s - %s", title, director);
+    public Bitmap getImage() {
+        return image;
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 }

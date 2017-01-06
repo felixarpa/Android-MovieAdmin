@@ -1,18 +1,23 @@
 package idi.felixjulen.movieadmin.presentation;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.FilmData;
+import idi.felixjulen.movieadmin.domain.model.Film;
+import idi.felixjulen.movieadmin.presentation.adapter.FilmRecyclerViewAdapter;
 import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemClick;
 
 public class MovieListViewController extends BaseViewController implements OnRecyclerViewItemClick {
 
     private RecyclerView recyclerView;
+    private TextView emptyTextView;
     private FilmData data;
 
     @Override
@@ -21,9 +26,10 @@ public class MovieListViewController extends BaseViewController implements OnRec
         setContentFrame(R.layout.movie_list_view);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        emptyTextView = (TextView) findViewById(R.id.empty);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        findViewById(R.id.add_character).setOnClickListener(
+        findViewById(R.id.add_movie).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -32,17 +38,22 @@ public class MovieListViewController extends BaseViewController implements OnRec
                 }
         );
 
-//        data = FilmData.getInstance(this);
-//        data.makeDefault();
-//
-//        ArrayList<Character> characters = data.list();
-//        CharacterRecyclerViewAdapter adapter = new CharacterRecyclerViewAdapter(characters, this);
-//        if (characters.size() == 0) {
-//            recyclerView.setVisibility(View.GONE);
-//        } else {
-//            recyclerView.setVisibility(View.VISIBLE);
-//            recyclerView.setAdapter(adapter);
-//        }
+        data = FilmData.getInstance(this);
+
+        setListContent();
+    }
+
+    private void setListContent() {
+        ArrayList<Film> films = data.list();
+        FilmRecyclerViewAdapter adapter = new FilmRecyclerViewAdapter(this, films, this);
+        if (films.size() == 0) {
+            emptyTextView.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            emptyTextView.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            recyclerView.setAdapter(adapter);
+        }
     }
 
     @Override
@@ -57,8 +68,8 @@ public class MovieListViewController extends BaseViewController implements OnRec
 
     @Override
     public void onRecyclerViewItemClick(Integer position, Long itemEntityId) {
-        Intent intent = new Intent(this, CharacterViewController.class);
-        intent.putExtra(getString(R.string.itemEntityId), itemEntityId);
-        startActivity(intent);
+//        Intent intent = new Intent(this, CharacterViewController.class);
+//        intent.putExtra(getString(R.string.itemEntityId), itemEntityId);
+//        startActivity(intent);
     }
 }

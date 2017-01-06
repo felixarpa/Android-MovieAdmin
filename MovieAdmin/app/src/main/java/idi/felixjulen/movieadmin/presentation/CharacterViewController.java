@@ -1,6 +1,7 @@
 package idi.felixjulen.movieadmin.presentation;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
@@ -10,10 +11,11 @@ import java.util.ArrayList;
 
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.CharacterData;
+import idi.felixjulen.movieadmin.domain.controller.FilmData;
 import idi.felixjulen.movieadmin.domain.model.Character;
 import idi.felixjulen.movieadmin.domain.model.Film;
 
-public class CharacterViewController extends BaseViewController {
+public class CharacterViewController extends AppCompatActivity {
 
     private Character character;
     private ArrayList<Film> films;
@@ -22,14 +24,14 @@ public class CharacterViewController extends BaseViewController {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentFrame(R.layout.character_view);
+        setContentView(R.layout.character_view);
         //toggle.onConfigurationChanged();
 
         Long id = getIntent().getExtras().getLong(getString(R.string.itemEntityId), -1);
         if (id == -1) finish();
 
         character = CharacterData.getInstance(this).get(id);
-        //films = FilmData.getInstance(this).get(id);
+        films = FilmData.getInstance(this).getWithCharacter(id);
 
         TextView nameTextView = (TextView) findViewById(R.id.name);
         nameTextView.setText(character.getName());
@@ -42,15 +44,5 @@ public class CharacterViewController extends BaseViewController {
 
 
 
-    }
-
-    @Override
-    protected Integer getMenuPosition() {
-        return 1;
-    }
-
-    @Override
-    protected Integer getMenuId() {
-        return R.id.character_search_item;
     }
 }

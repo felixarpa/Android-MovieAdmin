@@ -50,7 +50,6 @@ public class CharacterSearchViewController extends BaseViewController implements
         );
 
         data = CharacterData.getInstance(this);
-        data.makeDefault();
 
         setListContent(null);
     }

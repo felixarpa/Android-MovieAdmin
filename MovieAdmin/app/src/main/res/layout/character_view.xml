@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/md_white_1000">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:theme="@style/ToolbarStyle"/>
 
     <ImageView
         android:id="@+id/image"
         style="@style/ImageProfile"
+        android:layout_below="@id/toolbar"
         android:scaleType="centerCrop"
         android:src="@mipmap/film"/>
 
     <ImageView
         style="@style/ImageProfile"
+        android:layout_below="@id/toolbar"
         android:src="@mipmap/template"
         android:tint="@color/md_white_1000"/>
 

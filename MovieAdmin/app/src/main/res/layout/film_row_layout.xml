@@ -15,8 +15,8 @@
         style="@style/ImageListStyle"
         android:src="@mipmap/template" />
 
-    <TextView
-        android:id="@+id/name"
+    <LinearLayout
+        android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
         android:layout_alignParentTop="true"
@@ -24,9 +24,37 @@
         android:layout_toEndOf="@+id/image"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/md_black_1000"
-        android:textSize="20sp" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/md_black_1000"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/country"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/rate"
@@ -36,7 +64,6 @@
         android:layout_margin="16dp"
         android:layout_centerVertical="true"
         android:textColor="@color/md_black_1000"
-        android:text="8"
         android:textStyle="bold"
         android:textSize="36sp" />
 
@@ -46,6 +73,6 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/md_grey_500"
-        android:layout_below="@id/name" />
+        android:layout_below="@id/content" />
 
 </RelativeLayout>

@@ -124,4 +124,22 @@ public class CtrlDirectorDB implements CtrlDirector {
         cursor.close();
         return result;
     }
+
+    @Override
+    public Director getByName(String name) {
+        Cursor cursor = readableDatabase.query(
+                DBController.TABLE_DIRECTOR,
+                columns,
+                DBController.COLUMN_NAME + " = ?",
+                new String[]{name}, null, null, null
+        );
+        Director result;
+        if (cursor.moveToFirst()) {
+            result = cursorToDirector(cursor);
+        } else {
+            result = new Director();
+        }
+        cursor.close();
+        return result;
+    }
 }
