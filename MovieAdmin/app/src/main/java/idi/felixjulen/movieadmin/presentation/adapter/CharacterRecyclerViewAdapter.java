@@ -11,15 +11,15 @@ import java.util.ArrayList;
 
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.model.Character;
-import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemClick;
+import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
 
 
 public class CharacterRecyclerViewAdapter extends RecyclerView.Adapter<CharacterRecyclerViewAdapter.AdapterViewHolder> {
 
     private ArrayList<Character> characters;
-    private OnRecyclerViewItemClick callback;
+    private OnRecyclerViewItemAction callback;
 
-    public CharacterRecyclerViewAdapter(ArrayList<Character> characters, OnRecyclerViewItemClick callback) {
+    public CharacterRecyclerViewAdapter(ArrayList<Character> characters, OnRecyclerViewItemAction callback) {
         this.characters = characters;
         this.callback = callback;
     }

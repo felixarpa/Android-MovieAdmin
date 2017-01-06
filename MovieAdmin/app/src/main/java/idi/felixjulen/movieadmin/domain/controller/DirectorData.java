@@ -10,6 +10,7 @@ import idi.felixjulen.movieadmin.data.CtrlDirectorDB;
 import idi.felixjulen.movieadmin.data.DBController;
 import idi.felixjulen.movieadmin.domain.dataInterface.CtrlDirector;
 import idi.felixjulen.movieadmin.domain.model.Director;
+import idi.felixjulen.movieadmin.domain.model.Film;
 
 public class DirectorData implements DefaultDataController<Director> {
 
@@ -63,5 +64,15 @@ public class DirectorData implements DefaultDataController<Director> {
     @Override
     public Director get(Long id) {
         return ctrl.get(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        ArrayList<Film> films = FilmData.getInstance(context).list();
+        Boolean canDelete = true;
+        for (int i = 0; i < films.size() && canDelete; i++) {
+            if ((long) films.get(i).getDirector() == (long) id) canDelete = false;
+        }
+        if (canDelete) ctrl.delete(id);
     }
 }

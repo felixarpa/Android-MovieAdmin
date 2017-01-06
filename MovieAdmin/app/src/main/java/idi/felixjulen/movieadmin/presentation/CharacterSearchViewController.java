@@ -19,9 +19,9 @@ import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.CharacterData;
 import idi.felixjulen.movieadmin.domain.model.Character;
 import idi.felixjulen.movieadmin.presentation.adapter.CharacterRecyclerViewAdapter;
-import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemClick;
+import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
 
-public class CharacterSearchViewController extends BaseViewController implements OnRecyclerViewItemClick, SearchView.OnQueryTextListener {
+public class CharacterSearchViewController extends BaseViewController implements OnRecyclerViewItemAction, SearchView.OnQueryTextListener {
 
     private SearchView searchView;
     private RecyclerView recyclerView;

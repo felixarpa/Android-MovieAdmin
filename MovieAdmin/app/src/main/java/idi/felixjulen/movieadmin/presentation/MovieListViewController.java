@@ -12,13 +12,15 @@ import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.FilmData;
 import idi.felixjulen.movieadmin.domain.model.Film;
 import idi.felixjulen.movieadmin.presentation.adapter.FilmRecyclerViewAdapter;
-import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemClick;
+import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
 
-public class MovieListViewController extends BaseViewController implements OnRecyclerViewItemClick {
+public class MovieListViewController extends BaseViewController implements OnRecyclerViewItemAction {
 
     private RecyclerView recyclerView;
     private TextView emptyTextView;
     private FilmData data;
+    private ArrayList<Film> films;
+    private FilmRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,8 @@ public class MovieListViewController extends BaseViewController implements OnRec
     }
 
     private void setListContent() {
-        ArrayList<Film> films = data.list();
-        FilmRecyclerViewAdapter adapter = new FilmRecyclerViewAdapter(this, films, this);
+        films = data.list();
+        adapter = new FilmRecyclerViewAdapter(films, this);
         if (films.size() == 0) {
             emptyTextView.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
@@ -53,6 +55,7 @@ public class MovieListViewController extends BaseViewController implements OnRec
             emptyTextView.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(adapter);
+            registerForContextMenu(recyclerView);
         }
     }
 

@@ -65,6 +65,11 @@ public class CharacterData implements DefaultDataController<Character> {
         return ctrl.get(id);
     }
 
+    @Override
+    public void delete(Long id) {
+        ctrl.delete(id);
+    }
+
     public ArrayList<Character> search(String filter) {
         String upperFilter = filter.toUpperCase();
         ArrayList<Character> all = ctrl.all();

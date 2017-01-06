@@ -98,6 +98,11 @@ public class FilmData implements FilmDataController {
     }
 
     @Override
+    public void delete(Long id) {
+        ctrl.delete(id);
+    }
+
+    @Override
     public ArrayList<Film> getWithCharacter(Long id) {
         return ctrl.getByCharacter(id);
     }

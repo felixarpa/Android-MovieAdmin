@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:theme="@style/ToolbarStyle"/>
+        app:theme="@style/ToolbarStyle"
+        app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
 
     <ImageView
         android:id="@+id/image"
@@ -40,11 +40,31 @@
         android:textColor="@color/md_black_1000"
         android:maxLines="1"/>
 
+    <TextView
+        android:id="@+id/movies_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:text="@string/movies"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="4dp"/>
+
+    <FrameLayout
+        android:id="@+id/split"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/movies_header"
+        android:background="@color/md_grey_500" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_below="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/split"
         android:scrollbars="vertical" />
 
 </RelativeLayout>

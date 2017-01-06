@@ -1,6 +1,5 @@
 package idi.felixjulen.movieadmin.presentation.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,16 +11,14 @@ import java.util.ArrayList;
 
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.model.Film;
-import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemClick;
+import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
 
 public class FilmRecyclerViewAdapter extends RecyclerView.Adapter<FilmRecyclerViewAdapter.AdapterViewHolder> {
 
-    private Context context;
     private ArrayList<Film> films;
-    private OnRecyclerViewItemClick callback;
+    private OnRecyclerViewItemAction callback;
 
-    public FilmRecyclerViewAdapter(Context context, ArrayList<Film> films, OnRecyclerViewItemClick callback) {
-        this.context = context;
+    public FilmRecyclerViewAdapter(ArrayList<Film> films, OnRecyclerViewItemAction callback) {
         this.films = films;
         this.callback = callback;
     }
@@ -35,7 +32,7 @@ public class FilmRecyclerViewAdapter extends RecyclerView.Adapter<FilmRecyclerVi
     }
 
     @Override
-    public void onBindViewHolder(AdapterViewHolder holder, int position) {
+    public void onBindViewHolder(AdapterViewHolder holder, final int position) {
         final Integer itemPosition = position;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,17 +40,17 @@ public class FilmRecyclerViewAdapter extends RecyclerView.Adapter<FilmRecyclerVi
                 callback.onRecyclerViewItemClick(itemPosition, films.get(itemPosition).getId());
             }
         });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-           @Override
-           public boolean onLongClick(View v) {
-               return false;
-           }
-        });
         holder.titleView.setText(films.get(position).getTitle());
         holder.imageView.setImageBitmap(films.get(position).getImage());
         holder.rateView.setText(String.valueOf(films.get(position).getRate()));
         holder.countryView.setText(films.get(position).getCountry());
         holder.yearView.setText(String.valueOf(films.get(position).getYear()));
+    }
+
+    @Override
+    public void onViewRecycled(AdapterViewHolder holder) {
+        holder.itemView.setOnClickListener(null);
+        super.onViewRecycled(holder);
     }
 
     @Override
@@ -79,7 +76,6 @@ public class FilmRecyclerViewAdapter extends RecyclerView.Adapter<FilmRecyclerVi
             this.yearView = (TextView) this.itemView.findViewById(R.id.year);
             this.imageView = (ImageView) this.itemView.findViewById(R.id.image);
         }
-
     }
 }
 

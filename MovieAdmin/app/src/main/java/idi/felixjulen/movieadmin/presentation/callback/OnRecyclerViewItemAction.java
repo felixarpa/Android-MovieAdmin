@@ -1,6 +1,6 @@
 package idi.felixjulen.movieadmin.presentation.callback;
 
-public interface OnRecyclerViewItemClick {
+public interface OnRecyclerViewItemAction {
 
     void onRecyclerViewItemClick(Integer position, Long itemEntityId);
 
