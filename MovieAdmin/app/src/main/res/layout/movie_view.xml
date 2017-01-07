@@ -70,7 +70,7 @@
                 android:textSize="36sp" />
 
             <LinearLayout
-                android:id="@+id/info"
+                android:id="@+id/country_layout"
                 android:layout_below="@+id/rate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,17 +79,50 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14sp"
+                    android:text="@string/country_title"
+                    android:gravity="end|center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1" />
+
+                <TextView
                     android:id="@+id/country"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
                     android:textSize="20sp"
+                    android:textColor="@color/md_black_1000"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/year_layout"
+                android:layout_below="@+id/country_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14sp"
+                    android:text="@string/year_title"
+                    android:gravity="end|center_vertical"
+                    android:layout_marginEnd="8dp"
                     android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/year"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
                     android:textSize="20sp"
+                    android:textColor="@color/md_black_1000"
                     android:layout_weight="1" />
 
             </LinearLayout>
@@ -98,7 +131,7 @@
                 android:id="@+id/director_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/info"
+                android:layout_below="@+id/year_layout"
                 android:text="@string/director"
                 android:textStyle="bold"
                 android:textSize="14sp"

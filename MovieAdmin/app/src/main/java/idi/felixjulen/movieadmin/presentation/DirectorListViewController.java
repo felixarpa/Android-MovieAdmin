@@ -10,18 +10,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import idi.felixjulen.movieadmin.R;
-import idi.felixjulen.movieadmin.domain.controller.FilmData;
-import idi.felixjulen.movieadmin.domain.model.Film;
-import idi.felixjulen.movieadmin.presentation.adapter.FilmRecyclerViewAdapter;
+import idi.felixjulen.movieadmin.domain.controller.DirectorData;
+import idi.felixjulen.movieadmin.domain.model.Director;
+import idi.felixjulen.movieadmin.presentation.adapter.DirectorRecyclerViewAdapter;
 import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
 
-public class MovieListViewController extends BaseViewController implements OnRecyclerViewItemAction {
+public class DirectorListViewController extends BaseViewController implements OnRecyclerViewItemAction {
 
     private RecyclerView recyclerView;
     private TextView emptyTextView;
-    private FilmData data;
-    private ArrayList<Film> films;
-    private FilmRecyclerViewAdapter adapter;
+    private DirectorData data;
+    private ArrayList<Director> directors;
+    private DirectorRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +32,28 @@ public class MovieListViewController extends BaseViewController implements OnRec
         emptyTextView = (TextView) findViewById(R.id.empty);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        findViewById(R.id.add_movie).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                }
-        );
+//        findViewById(R.id.add_movie).setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//
+//                    }
+//                }
+//        );
 
     }
 
     @Override
     protected void onResume() {
-        data = FilmData.getInstance(this);
+        data = DirectorData.getInstance(this);
         setListContent();
         super.onResume();
     }
 
     private void setListContent() {
-        films = data.list();
-        adapter = new FilmRecyclerViewAdapter(films, this);
-        if (films.size() == 0) {
+        directors = data.list();
+        adapter = new DirectorRecyclerViewAdapter(directors, this);
+        if (directors.size() == 0) {
             emptyTextView.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         } else {
@@ -66,12 +66,12 @@ public class MovieListViewController extends BaseViewController implements OnRec
 
     @Override
     protected Integer getMenuPosition() {
-        return 0;
+        return 2;
     }
 
     @Override
     protected Integer getMenuId() {
-        return R.id.movie_list_item;
+        return R.id.director_list_item;
     }
 
     @Override

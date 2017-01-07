@@ -15,7 +15,7 @@ public class AboutViewController extends BaseViewController {
 
     @Override
     protected Integer getMenuPosition() {
-        return 4;
+        return 5;
     }
 
     @Override

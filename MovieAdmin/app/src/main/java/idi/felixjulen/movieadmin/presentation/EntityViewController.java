@@ -10,23 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 import idi.felixjulen.movieadmin.R;
-import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
 
 
-public abstract class EntityViewController extends AppCompatActivity implements OnRecyclerViewItemAction {
+public abstract class EntityViewController extends AppCompatActivity {
 
     protected Long id;
     protected Boolean enableNavigation;
     protected Long clickedEntityId;
     protected Integer layoutResourceId;
-    protected View.OnClickListener contentEntity = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (enableNavigation) {
-                navigate(clickedEntityId);
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,14 +77,6 @@ public abstract class EntityViewController extends AppCompatActivity implements 
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onRecyclerViewItemClick(Long itemEntityId) {
-        if (enableNavigation) {
-            navigate(itemEntityId);
-        }
-    }
-
-    protected abstract void navigate(Long clickedEntityId);
     protected abstract void setUpEntity();
     protected abstract void editEntity();
     protected abstract void removeEntity();

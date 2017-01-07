@@ -3,7 +3,6 @@ package idi.felixjulen.movieadmin.presentation;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,11 +22,6 @@ public class MovieViewController extends EntityViewController {
     protected void onCreate(Bundle savedInstanceState) {
         layoutResourceId = R.layout.movie_view;
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void navigate(Long clickedEntityId) {
-
     }
 
     @Override
@@ -63,10 +57,6 @@ public class MovieViewController extends EntityViewController {
         }
 
         Character character = CharacterData.getInstance(this).get(film.getProtagonist());
-
-        View characterView = findViewById(R.id.main_character);
-        clickedEntityId = film.getProtagonist();
-        characterView.setOnClickListener(contentEntity);
 
         TextView nameView = (TextView) findViewById(R.id.name);
         nameView.setText(character.getName());

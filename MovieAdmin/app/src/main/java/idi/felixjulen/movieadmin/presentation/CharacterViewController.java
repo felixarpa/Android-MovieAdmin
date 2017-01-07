@@ -19,8 +19,9 @@ import idi.felixjulen.movieadmin.domain.controller.FilmData;
 import idi.felixjulen.movieadmin.domain.model.Character;
 import idi.felixjulen.movieadmin.domain.model.Film;
 import idi.felixjulen.movieadmin.presentation.adapter.FilmRecyclerViewAdapter;
+import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
 
-public class CharacterViewController extends EntityViewController {
+public class CharacterViewController extends EntityViewController implements OnRecyclerViewItemAction {
 
     private Character character;
 
@@ -88,10 +89,12 @@ public class CharacterViewController extends EntityViewController {
     }
 
     @Override
-    protected void navigate(Long clickedEntityId) {
-        Intent intent = new Intent(this, MovieViewController.class);
-        intent.putExtra(getString(R.string.itemEntityId), clickedEntityId);
-        intent.putExtra(getString(R.string.enable_navigation), false);
-        startActivity(intent);
+    public void onRecyclerViewItemClick(Long itemEntityId) {
+        if (enableNavigation) {
+            Intent intent = new Intent(this, MovieViewController.class);
+            intent.putExtra(getString(R.string.itemEntityId), clickedEntityId);
+            intent.putExtra(getString(R.string.enable_navigation), false);
+            startActivity(intent);
+        }
     }
 }

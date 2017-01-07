@@ -9,7 +9,7 @@
         android:id="@+id/image"
         style="@style/ImageListStyle"
         android:scaleType="centerCrop"
-        android:src="@mipmap/film" />
+        android:src="@mipmap/profile" />
 
     <ImageView
         style="@style/ImageListStyle"

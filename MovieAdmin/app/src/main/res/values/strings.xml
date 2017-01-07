@@ -46,10 +46,13 @@
     <string name="character">Character</string>
     <string name="no_text"> </string>
     <string name="delete_character_title">Delete character</string>
-    <string name="delete_character_message">Are you sure you want to delete this character? You will also delete all the movies that he/she is a main character!</string>
+    <string name="delete_character_message">Are you sure you want to delete this character? You will also delete all the movies where he/she is the main character!</string>
     <string name="delete_movie_title">Delete movie</string>
     <string name="delete_movie_message">Are you sure you want to delete this movie?</string>
     <string name="enable_navigation">enable_navigation</string>
     <string name="director">DIRECTOR</string>
     <string name="main_character">MAIN CHARACTER</string>
+    <string name="year_title">YEAR</string>
+    <string name="country_title">COUNTRY</string>
+    <string name="directors">Directors</string>
 </resources>

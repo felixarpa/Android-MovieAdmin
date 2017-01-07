@@ -15,7 +15,7 @@ public class HelpViewController extends BaseViewController {
 
     @Override
     protected Integer getMenuPosition() {
-        return 3;
+        return 4;
     }
 
     @Override

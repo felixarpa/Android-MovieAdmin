@@ -9,24 +9,28 @@
         android:id="@+id/image_dir"
         style="@style/ImageListStyle"
         android:scaleType="centerCrop"
-        android:src="@mipmap/film" />
+        android:src="@mipmap/profile" />
+        <!--android:visibility="gone"-->
 
     <ImageView
         style="@style/ImageListStyle"
         android:src="@mipmap/template" />
+        <!--android:visibility="gone"-->
 
     <TextView
         android:id="@+id/name_dir"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/image_dir"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center_vertical"
         android:textColor="@color/md_black_1000"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_alignParentEnd="true"
+        />
+        <!--android:layout_marginStart="96dp"-->
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -30,12 +29,13 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
     private final Integer[] CHECKED_ICONS = new Integer[] {
             R.drawable.movie,
             R.drawable.account,
+            R.drawable.account_outline,
             R.drawable.settings,
             R.drawable.help_circle,
             R.drawable.information
     };
 
-    public static final String sharedPreferencesName = "MOVIE_ADRMIN_SHARED_PREFERENCES_NAME";
+    public static final String sharedPreferencesName = "MOVIE_ADMIN_SHARED_PREFERENCES_NAME";
     public static final String firstUsage = "FIRST_USAGE";
 
     @Override
@@ -112,6 +112,10 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
                 intent = new Intent(this, CharacterSearchViewController.class);
                 break;
 
+            case R.id.director_list_item:
+                intent = new Intent(this, DirectorListViewController.class);
+                break;
+
             case R.id.settings_item:
                 intent = new Intent(this, SettingsViewController.class);
                 break;
@@ -136,13 +140,4 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
 
     protected abstract Integer getMenuPosition();
     protected abstract Integer getMenuId();
-
-
-    public static int getColor(Context context, int resourceId) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return context.getColor(resourceId);
-        } else {
-            return context.getResources().getColor(resourceId);
-        }
-    }
 }

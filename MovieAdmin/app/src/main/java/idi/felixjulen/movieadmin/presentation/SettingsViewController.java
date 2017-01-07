@@ -14,7 +14,7 @@ public class SettingsViewController extends BaseViewController {
 
     @Override
     protected Integer getMenuPosition() {
-        return 2;
+        return 3;
     }
 
     @Override

@@ -38,6 +38,9 @@
         <activity
             android:name=".presentation.MovieViewController"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.DirectorListViewController"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
