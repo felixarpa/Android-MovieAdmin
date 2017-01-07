@@ -1,4 +1,4 @@
-package idi.felixjulen.movieadmin.presentation.listViews;
+package idi.felixjulen.movieadmin.presentation.controller.listView;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,7 +9,7 @@ import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.DirectorData;
 import idi.felixjulen.movieadmin.domain.model.Director;
 import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
-import idi.felixjulen.movieadmin.presentation.singleEntityViews.DirectorViewController;
+import idi.felixjulen.movieadmin.presentation.controller.singleEntityView.DirectorViewController;
 
 public class DirectorListViewController extends EntityListViewController<Director> implements OnRecyclerViewItemAction {
 

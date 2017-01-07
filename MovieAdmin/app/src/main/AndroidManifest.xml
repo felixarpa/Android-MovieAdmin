@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".presentation.SplashViewController"
+            android:name=".presentation.controller.SplashViewController"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,31 +18,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.listViews.MovieListViewController"
+            android:name=".presentation.controller.listView.MovieListViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.listViews.CharacterSearchViewController"
+            android:name=".presentation.controller.listView.CharacterSearchViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.AboutViewController"
+            android:name=".presentation.controller.AboutViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.HelpViewController"
+            android:name=".presentation.controller.HelpViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.SettingsViewController"
+            android:name=".presentation.controller.SettingsViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.singleEntityViews.CharacterViewController"
+            android:name=".presentation.controller.singleEntityView.CharacterViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.singleEntityViews.MovieViewController"
+            android:name=".presentation.controller.singleEntityView.MovieViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.listViews.DirectorListViewController"
+            android:name=".presentation.controller.listView.DirectorListViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.singleEntityViews.DirectorViewController"
+            android:name=".presentation.controller.singleEntityView.DirectorViewController"
             android:screenOrientation="portrait" />
     </application>
 

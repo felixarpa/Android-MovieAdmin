@@ -1,4 +1,4 @@
-package idi.felixjulen.movieadmin.presentation.listViews;
+package idi.felixjulen.movieadmin.presentation.controller.listView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.model.Entity;
-import idi.felixjulen.movieadmin.presentation.BaseViewController;
+import idi.felixjulen.movieadmin.presentation.controller.BaseViewController;
 import idi.felixjulen.movieadmin.presentation.adapter.EntityRecyclerViewAdapter;
 import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
 

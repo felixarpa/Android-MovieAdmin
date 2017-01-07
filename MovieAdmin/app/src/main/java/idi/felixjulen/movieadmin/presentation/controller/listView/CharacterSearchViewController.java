@@ -1,4 +1,4 @@
-package idi.felixjulen.movieadmin.presentation.listViews;
+package idi.felixjulen.movieadmin.presentation.controller.listView;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.CharacterData;
 import idi.felixjulen.movieadmin.domain.model.Character;
-import idi.felixjulen.movieadmin.presentation.singleEntityViews.CharacterViewController;
+import idi.felixjulen.movieadmin.presentation.controller.singleEntityView.CharacterViewController;
 
 public class CharacterSearchViewController extends EntityListViewController<Character> implements SearchView.OnQueryTextListener {
 

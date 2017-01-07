@@ -1,24 +1,25 @@
-package idi.felixjulen.movieadmin.presentation;
+package idi.felixjulen.movieadmin.presentation.controller;
 
 import android.os.Bundle;
 
 import idi.felixjulen.movieadmin.R;
 
-public class SettingsViewController extends BaseViewController {
+public class AboutViewController extends BaseViewController {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentFrame(R.layout.settings_view);
+        setContentFrame(R.layout.about_view);
+
     }
 
     @Override
     protected Integer getMenuPosition() {
-        return 3;
+        return 5;
     }
 
     @Override
     protected Integer getMenuId() {
-        return R.id.settings_item;
+        return R.id.about_item;
     }
 }

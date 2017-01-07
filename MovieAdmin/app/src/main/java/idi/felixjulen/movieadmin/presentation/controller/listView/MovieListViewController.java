@@ -1,4 +1,4 @@
-package idi.felixjulen.movieadmin.presentation.listViews;
+package idi.felixjulen.movieadmin.presentation.controller.listView;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.FilmData;
 import idi.felixjulen.movieadmin.domain.model.Film;
 import idi.felixjulen.movieadmin.presentation.adapter.FilmRecyclerViewAdapter;
-import idi.felixjulen.movieadmin.presentation.singleEntityViews.MovieViewController;
+import idi.felixjulen.movieadmin.presentation.controller.singleEntityView.MovieViewController;
 
 public class MovieListViewController extends EntityListViewController<Film> {
 

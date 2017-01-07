@@ -1,25 +1,25 @@
-package idi.felixjulen.movieadmin.presentation;
+package idi.felixjulen.movieadmin.presentation.controller;
 
 import android.os.Bundle;
 
 import idi.felixjulen.movieadmin.R;
 
-public class AboutViewController extends BaseViewController {
+public class HelpViewController extends BaseViewController {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentFrame(R.layout.about_view);
+        setContentFrame(R.layout.help_view);
 
     }
 
     @Override
     protected Integer getMenuPosition() {
-        return 5;
+        return 4;
     }
 
     @Override
     protected Integer getMenuId() {
-        return R.id.about_item;
+        return R.id.help_item;
     }
 }

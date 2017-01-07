@@ -1,4 +1,4 @@
-package idi.felixjulen.movieadmin.presentation.singleEntityViews;
+package idi.felixjulen.movieadmin.presentation.controller.singleEntityView;
 
 import android.content.Intent;
 import android.os.Bundle;
