@@ -11,14 +11,14 @@ import idi.felixjulen.movieadmin.domain.model.Entity;
 import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
 
 
-abstract class EntityRecyclerViewAdapter<T extends EntityViewHolder, S extends Entity> extends RecyclerView.Adapter<T> {
+public class EntityRecyclerViewAdapter<T extends EntityViewHolder, S extends Entity> extends RecyclerView.Adapter<T> {
 
-    private Integer layoutRowResourceId;
+    private Integer rowLayoutResourceId;
     protected ArrayList<S> data;
     private OnRecyclerViewItemAction callback;
 
-    EntityRecyclerViewAdapter(Integer layoutRowResourceId, ArrayList<S> data, OnRecyclerViewItemAction callback) {
-        this.layoutRowResourceId = layoutRowResourceId;
+    public EntityRecyclerViewAdapter(Integer rowLayoutResourceId, ArrayList<S> data, OnRecyclerViewItemAction callback) {
+        this.rowLayoutResourceId = rowLayoutResourceId;
         this.data = data;
         this.callback = callback;
     }
@@ -26,11 +26,14 @@ abstract class EntityRecyclerViewAdapter<T extends EntityViewHolder, S extends E
     @Override
     public T onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(layoutRowResourceId, parent, false);
+        View view = layoutInflater.inflate(rowLayoutResourceId, parent, false);
         return newT(view);
     }
 
-    protected abstract T newT(View view);
+    protected T newT(View view) {
+        //noinspection unchecked
+        return (T) new EntityViewHolder(view);
+    }
 
     @Override
     public void onBindViewHolder(T holder, int position) {

@@ -1,23 +1,33 @@
-package idi.felixjulen.movieadmin.presentation;
+package idi.felixjulen.movieadmin.presentation.singleEntityViews;
 
+import android.content.DialogInterface;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import idi.felixjulen.movieadmin.R;
+import idi.felixjulen.movieadmin.domain.controller.FilmData;
+import idi.felixjulen.movieadmin.domain.model.Entity;
 
 
-public abstract class EntityViewController extends AppCompatActivity {
+public abstract class EntityViewController<T extends Entity> extends AppCompatActivity {
 
     protected Long id;
-    protected Boolean enableNavigation;
     protected Long clickedEntityId;
     protected Integer layoutResourceId;
+    protected T data;
+    protected Integer removeTitle;
+    protected Integer removeMessage;
+    protected Integer removeYes;
+    protected Integer removeNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +36,6 @@ public abstract class EntityViewController extends AppCompatActivity {
 
         id = getIntent().getExtras().getLong(getString(R.string.itemEntityId), -1);
         if (id == -1) finish();
-        enableNavigation = getIntent().getExtras().getBoolean(getString(R.string.enable_navigation), false);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.no_text);
@@ -46,7 +55,17 @@ public abstract class EntityViewController extends AppCompatActivity {
             }
         });
 
-        setUpEntity();
+        data = getData();
+
+        FilmData.getInstance(this).get(id);
+
+        TextView nameView = (TextView) findViewById(R.id.name);
+        nameView.setText(data.getName());
+
+        if (data.getImage() != null) {
+            ImageView imageView = (ImageView) findViewById(R.id.image);
+            imageView.setImageBitmap(data.getImage());
+        }
     }
 
     @Override
@@ -66,7 +85,27 @@ public abstract class EntityViewController extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.remove_item:
-                removeEntity();
+                new AlertDialog.Builder(this)
+                        .setTitle(removeTitle)
+                        .setMessage(removeMessage)
+                        .setPositiveButton(
+                                removeYes,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        removeEntity();
+                                        finish();
+                                    }
+                                })
+                        .setNeutralButton(
+                                removeNo,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                        .show();
                 break;
 
             case R.id.edit_iem:
@@ -77,8 +116,8 @@ public abstract class EntityViewController extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected abstract void setUpEntity();
     protected abstract void editEntity();
     protected abstract void removeEntity();
+    protected abstract T getData();
 
 }

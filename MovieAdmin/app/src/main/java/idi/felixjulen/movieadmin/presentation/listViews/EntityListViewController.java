@@ -1,4 +1,4 @@
-package idi.felixjulen.movieadmin.presentation;
+package idi.felixjulen.movieadmin.presentation.listViews;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,33 +10,38 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import idi.felixjulen.movieadmin.R;
-import idi.felixjulen.movieadmin.domain.controller.FilmData;
-import idi.felixjulen.movieadmin.domain.model.Film;
-import idi.felixjulen.movieadmin.presentation.adapter.FilmRecyclerViewAdapter;
+import idi.felixjulen.movieadmin.domain.model.Entity;
+import idi.felixjulen.movieadmin.presentation.BaseViewController;
+import idi.felixjulen.movieadmin.presentation.adapter.EntityRecyclerViewAdapter;
 import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
 
-public class MovieListViewController extends BaseViewController implements OnRecyclerViewItemAction {
+public abstract class EntityListViewController<T extends Entity> extends BaseViewController implements OnRecyclerViewItemAction {
 
-    private RecyclerView recyclerView;
+    protected RecyclerView recyclerView;
     private TextView emptyTextView;
-    private FilmData data;
-    private ArrayList<Film> films;
-    private FilmRecyclerViewAdapter adapter;
+    protected ArrayList<T> data;
+
+    protected Integer layoutResourceId;
+    protected Integer titleResourceId;
+    protected Integer rowLayoutResourceId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentFrame(R.layout.movie_list_view);
+        setContentFrame(layoutResourceId);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(titleResourceId);
+        }
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         emptyTextView = (TextView) findViewById(R.id.empty);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        findViewById(R.id.add_movie).setOnClickListener(
+        findViewById(R.id.add).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        addEntity();
                     }
                 }
         );
@@ -45,40 +50,35 @@ public class MovieListViewController extends BaseViewController implements OnRec
 
     @Override
     protected void onResume() {
-        data = FilmData.getInstance(this);
         setListContent();
         super.onResume();
     }
 
-    private void setListContent() {
-        films = data.list();
-        adapter = new FilmRecyclerViewAdapter(films, this);
-        if (films.size() == 0) {
+    protected void setListContent() {
+        data = loadData();
+        if (data.size() == 0) {
             emptyTextView.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         } else {
             emptyTextView.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
-            recyclerView.setAdapter(adapter);
-            registerForContextMenu(recyclerView);
+            setAdapterToRecyclerView();
         }
     }
 
     @Override
-    protected Integer getMenuPosition() {
-        return 0;
-    }
-
-    @Override
-    protected Integer getMenuId() {
-        return R.id.movie_list_item;
-    }
-
-    @Override
     public void onRecyclerViewItemClick(Long itemEntityId) {
-        Intent intent = new Intent(this, MovieViewController.class);
+        Intent intent = new Intent(this, entityActivity());
         intent.putExtra(getString(R.string.itemEntityId), itemEntityId);
         intent.putExtra(getString(R.string.enable_navigation), true);
         startActivity(intent);
+    }
+
+    protected abstract void addEntity();
+    protected abstract ArrayList<T> loadData();
+    protected abstract Class<?> entityActivity();
+
+    protected void setAdapterToRecyclerView() {
+        recyclerView.setAdapter(new EntityRecyclerViewAdapter<>(rowLayoutResourceId, data, this));
     }
 }

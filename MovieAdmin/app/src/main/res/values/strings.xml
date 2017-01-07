@@ -55,4 +55,12 @@
     <string name="year_title">YEAR</string>
     <string name="country_title">COUNTRY</string>
     <string name="directors">Directors</string>
+    <string name="of_course">Of course</string>
+    <string name="not_really">Not really</string>
+    <string name="hell_yeah">Hell yeah!</string>
+    <string name="oh_no">Oh, no</string>
+    <string name="no_thanks">No, thanks</string>
+    <string name="ok">OK</string>
+    <string name="delete_director_message" >Are you sure you want to delete this director? You will also delete all his/her movies</string>
+    <string name="delete_director_title" >Delete director</string>
 </resources>

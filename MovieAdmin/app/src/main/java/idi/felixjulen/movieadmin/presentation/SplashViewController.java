@@ -11,6 +11,7 @@ import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.CharacterData;
 import idi.felixjulen.movieadmin.domain.controller.DirectorData;
 import idi.felixjulen.movieadmin.domain.controller.FilmData;
+import idi.felixjulen.movieadmin.presentation.listViews.MovieListViewController;
 
 public class SplashViewController extends AppCompatActivity {
 

@@ -28,7 +28,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/image_film"
+                android:id="@+id/image"
                 style="@style/ImageProfile"
                 android:scaleType="centerCrop"
                 android:layout_alignParentTop="true"
@@ -41,7 +41,7 @@
                 android:tint="@color/md_white_1000"/>
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -59,7 +59,7 @@
                 android:id="@+id/rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/image_film"
+                android:layout_below="@+id/image"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
@@ -147,12 +147,11 @@
                 android:layout_below="@+id/director_header"
                 android:background="@color/md_grey_500" />
 
-            <include
+            <FrameLayout
                 android:id="@+id/director"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/split_dir"
-                layout="@layout/director_row_layout" />
+                android:layout_below="@+id/split_dir" />
 
             <TextView
                 android:id="@+id/character_header"
@@ -174,12 +173,11 @@
                 android:layout_below="@+id/character_header"
                 android:background="@color/md_grey_500" />
 
-            <include
+            <FrameLayout
                 android:id="@+id/main_character"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/split_cha"
-                layout="@layout/character_row_layout" />
+                android:layout_below="@+id/split_cha" />
 
         </RelativeLayout>
 

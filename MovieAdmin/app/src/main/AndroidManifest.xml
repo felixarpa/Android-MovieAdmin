@@ -18,10 +18,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.MovieListViewController"
+            android:name=".presentation.listViews.MovieListViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.CharacterSearchViewController"
+            android:name=".presentation.listViews.CharacterSearchViewController"
             android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.AboutViewController"
@@ -33,13 +33,16 @@
             android:name=".presentation.SettingsViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.CharacterViewController"
+            android:name=".presentation.singleEntityViews.CharacterViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.MovieViewController"
+            android:name=".presentation.singleEntityViews.MovieViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.DirectorListViewController"
+            android:name=".presentation.listViews.DirectorListViewController"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.singleEntityViews.DirectorViewController"
             android:screenOrientation="portrait" />
     </application>
 

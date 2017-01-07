@@ -19,6 +19,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 
 import idi.felixjulen.movieadmin.R;
+import idi.felixjulen.movieadmin.presentation.listViews.CharacterSearchViewController;
+import idi.felixjulen.movieadmin.presentation.listViews.DirectorListViewController;
+import idi.felixjulen.movieadmin.presentation.listViews.MovieListViewController;
 
 public abstract class BaseViewController extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

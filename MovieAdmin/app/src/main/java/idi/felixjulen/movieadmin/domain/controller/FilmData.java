@@ -106,4 +106,8 @@ public class FilmData implements FilmDataController {
     public ArrayList<Film> getWithCharacter(Long id) {
         return ctrl.getByCharacter(id);
     }
+    @Override
+    public ArrayList<Film> getWithDirector(Long id) {
+        return ctrl.getByDirector(id);
+    }
 }

@@ -9,11 +9,11 @@ import idi.felixjulen.movieadmin.R;
 
 public class EntityViewHolder extends RecyclerView.ViewHolder {
 
-    public View itemView;
-    public ImageView imageView;
-    public TextView nameView;
+    View itemView;
+    ImageView imageView;
+    TextView nameView;
 
-    public EntityViewHolder(View itemView) {
+    EntityViewHolder(View itemView) {
         super(itemView);
         this.itemView = itemView;
         this.imageView = (ImageView) this.itemView.findViewById(R.id.image);

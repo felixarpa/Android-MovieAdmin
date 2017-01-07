@@ -115,11 +115,20 @@ public class CtrlFilmDB implements CtrlFilm {
 
     @Override
     public ArrayList<Film> getByCharacter(Long id) {
+        return getBy(DBController.COLUMN_MAIN_CHARACTER, id);
+    }
+
+    @Override
+    public ArrayList<Film> getByDirector(Long id) {
+        return getBy(DBController.COLUMN_DIRECTOR, id);
+    }
+
+    private ArrayList<Film> getBy(String column, Long id) {
         String[] selectionArgs = new String[] { String.valueOf(id) };
         Cursor cursor = readableDatabase.query(
                 DBController.TABLE_FILMS,
                 columns,
-                DBController.COLUMN_MAIN_CHARACTER + " = ?",
+                column + " = ?",
                 selectionArgs,
                 null, null, null
         );
