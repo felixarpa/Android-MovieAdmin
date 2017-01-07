@@ -144,8 +144,8 @@ public class CtrlFilmDB implements CtrlFilm {
         result.setTitle(cursor.getString(cursor.getColumnIndex(DBController.COLUMN_TITLE)));
         result.setCountry(cursor.getString(cursor.getColumnIndex(DBController.COLUMN_COUNTRY)));
         result.setYear(cursor.getInt(cursor.getColumnIndex(DBController.COLUMN_YEAR)));
-        result.setDirector(cursor.getInt(cursor.getColumnIndex(DBController.COLUMN_DIRECTOR)));
-        result.setProtagonist(cursor.getInt(cursor.getColumnIndex(DBController.COLUMN_MAIN_CHARACTER)));
+        result.setDirector(cursor.getLong(cursor.getColumnIndex(DBController.COLUMN_DIRECTOR)));
+        result.setProtagonist(cursor.getLong(cursor.getColumnIndex(DBController.COLUMN_MAIN_CHARACTER)));
         result.setRate(cursor.getInt(cursor.getColumnIndex(DBController.COLUMN_RATE)));
         String image = cursor.getString(cursor.getColumnIndex(DBController.COLUMN_IMAGE));
         result.setImage(stringToBitmap(image));

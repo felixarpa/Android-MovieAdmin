@@ -48,10 +48,13 @@ public class CharacterSearchViewController extends BaseViewController implements
                     }
                 }
         );
+    }
 
+    @Override
+    protected void onResume() {
         data = CharacterData.getInstance(this);
-
         setListContent(null);
+        super.onResume();
     }
 
     private void setListContent(String filter) {
@@ -125,9 +128,10 @@ public class CharacterSearchViewController extends BaseViewController implements
     }
 
     @Override
-    public void onRecyclerViewItemClick(Integer position, Long itemEntityId) {
+    public void onRecyclerViewItemClick(Long itemEntityId) {
         Intent intent = new Intent(this, CharacterViewController.class);
         intent.putExtra(getString(R.string.itemEntityId), itemEntityId);
+        intent.putExtra(getString(R.string.enable_navigation), true);
         startActivity(intent);
     }
 }

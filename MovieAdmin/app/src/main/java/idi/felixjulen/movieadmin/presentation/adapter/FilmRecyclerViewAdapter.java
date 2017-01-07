@@ -26,7 +26,7 @@ public class FilmRecyclerViewAdapter extends RecyclerView.Adapter<FilmRecyclerVi
     @Override
     public AdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.film_row_layout, parent, false);
+        View view = layoutInflater.inflate(R.layout.movie_row_layout, parent, false);
 
         return new AdapterViewHolder(view);
     }
@@ -37,11 +37,13 @@ public class FilmRecyclerViewAdapter extends RecyclerView.Adapter<FilmRecyclerVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                callback.onRecyclerViewItemClick(itemPosition, films.get(itemPosition).getId());
+                callback.onRecyclerViewItemClick(films.get(itemPosition).getId());
             }
         });
         holder.titleView.setText(films.get(position).getTitle());
-        holder.imageView.setImageBitmap(films.get(position).getImage());
+        if (films.get(position).getImage() != null){
+            holder.imageView.setImageBitmap(films.get(position).getImage());
+        }
         holder.rateView.setText(String.valueOf(films.get(position).getRate()));
         holder.countryView.setText(films.get(position).getCountry());
         holder.yearView.setText(String.valueOf(films.get(position).getYear()));

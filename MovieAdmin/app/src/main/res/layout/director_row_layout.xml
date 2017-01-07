@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/md_white_1000" >
+
+    <ImageView
+        android:id="@+id/image_dir"
+        style="@style/ImageListStyle"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/film" />
+
+    <ImageView
+        style="@style/ImageListStyle"
+        android:src="@mipmap/template" />
+
+    <TextView
+        android:id="@+id/name_dir"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/image_dir"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/md_black_1000"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/md_grey_500"
+        android:layout_below="@id/name_dir" />
+
+</RelativeLayout>

@@ -13,10 +13,10 @@ public class Film {
 
     private Long _id;
     private String title;
-    private Integer director;
+    private Long director;
     private String country;
     private Integer year;
-    private Integer protagonist;
+    private Long protagonist;
     private Integer rate;
     private Bitmap image;
 
@@ -36,11 +36,11 @@ public class Film {
         this.title = title;
     }
 
-    public Integer getDirector() {
+    public Long getDirector() {
         return director;
     }
 
-    public void setDirector(Integer director) {
+    public void setDirector(Long director) {
         this.director = director;
     }
 
@@ -60,11 +60,11 @@ public class Film {
         this.year = year;
     }
 
-    public Integer getProtagonist() {
+    public Long getProtagonist() {
         return protagonist;
     }
 
-    public void setProtagonist(Integer protagonist) {
+    public void setProtagonist(Long protagonist) {
         this.protagonist = protagonist;
     }
 

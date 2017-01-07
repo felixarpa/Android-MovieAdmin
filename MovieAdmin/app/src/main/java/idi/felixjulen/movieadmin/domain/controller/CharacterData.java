@@ -10,6 +10,7 @@ import idi.felixjulen.movieadmin.data.CtrlCharacterDB;
 import idi.felixjulen.movieadmin.data.DBController;
 import idi.felixjulen.movieadmin.domain.dataInterface.CtrlCharacter;
 import idi.felixjulen.movieadmin.domain.model.Character;
+import idi.felixjulen.movieadmin.domain.model.Film;
 
 public class CharacterData implements DefaultDataController<Character> {
 
@@ -67,6 +68,10 @@ public class CharacterData implements DefaultDataController<Character> {
 
     @Override
     public void delete(Long id) {
+        ArrayList<Film> films = FilmData.getInstance(context).list();
+        for (Film f : films) {
+            if (f.getProtagonist().equals(id)) FilmData.getInstance(context).delete(f.getId());
+        }
         ctrl.delete(id);
     }
 

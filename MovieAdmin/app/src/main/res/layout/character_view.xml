@@ -1,70 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/md_white_1000">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"
         app:theme="@style/ToolbarStyle"
         app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
 
-    <ImageView
-        android:id="@+id/image"
-        style="@style/ImageProfile"
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
         android:layout_below="@id/toolbar"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/film"/>
-
-    <ImageView
-        style="@style/ImageProfile"
-        android:layout_below="@id/toolbar"
-        android:src="@mipmap/template"
-        android:tint="@color/md_white_1000"/>
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/image"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="64dp"
-        android:textSize="24sp"
-        android:text="@string/jennifer_lawrence_name"
-        android:textColor="@color/md_black_1000"
-        android:maxLines="1"/>
+        android:background="@color/md_white_1000">
 
-    <TextView
-        android:id="@+id/movies_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:text="@string/movies"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="4dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <FrameLayout
-        android:id="@+id/split"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_below="@+id/movies_header"
-        android:background="@color/md_grey_500" />
+            <ImageView
+                android:id="@+id/image"
+                style="@style/ImageProfile"
+                android:scaleType="centerCrop"
+                android:layout_alignParentTop="true"
+                android:src="@mipmap/film"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/split"
-        android:scrollbars="vertical" />
+            <ImageView
+                style="@style/ImageProfile"
+                android:src="@mipmap/template"
+                android:layout_alignParentTop="true"
+                android:tint="@color/md_white_1000"/>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="64dp"
+                android:textSize="24sp"
+                android:textColor="@color/md_black_1000"
+                android:maxLines="1"/>
+
+            <TextView
+                android:id="@+id/movies_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:text="@string/movies"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="2dp"/>
+
+            <FrameLayout
+                android:id="@+id/split"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/movies_header"
+                android:background="@color/md_grey_500" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/split"
+                android:scrollbars="vertical" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

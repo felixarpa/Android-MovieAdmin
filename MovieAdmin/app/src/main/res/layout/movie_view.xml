@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_white_1000">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        app:theme="@style/ToolbarStyle"
+        app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_height="wrap_content"
+        android:background="@color/md_white_1000">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_film"
+                style="@style/ImageProfile"
+                android:scaleType="centerCrop"
+                android:layout_alignParentTop="true"
+                android:src="@mipmap/film"/>
+
+            <ImageView
+                style="@style/ImageProfile"
+                android:src="@mipmap/template"
+                android:layout_alignParentTop="true"
+                android:tint="@color/md_white_1000"/>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/rate"
+                android:layout_alignBaseline="@+id/rate"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="32dp"
+                android:textSize="24sp"
+                android:textColor="@color/md_black_1000"
+                android:maxLines="1"/>
+
+            <TextView
+                android:id="@+id/rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_film"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/md_black_1000"
+                android:textStyle="bold"
+                android:textSize="36sp" />
+
+            <LinearLayout
+                android:id="@+id/info"
+                android:layout_below="@+id/rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/country"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="20sp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/year"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="20sp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/director_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/info"
+                android:text="@string/director"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="2dp"/>
+
+            <FrameLayout
+                android:id="@+id/split_dir"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/director_header"
+                android:background="@color/md_grey_500" />
+
+            <include
+                android:id="@+id/director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/split_dir"
+                layout="@layout/director_row_layout" />
+
+            <TextView
+                android:id="@+id/character_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/director"
+                android:text="@string/main_character"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="2dp"/>
+
+            <FrameLayout
+                android:id="@+id/split_cha"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/character_header"
+                android:background="@color/md_grey_500" />
+
+            <include
+                android:id="@+id/main_character"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/split_cha"
+                layout="@layout/character_row_layout" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

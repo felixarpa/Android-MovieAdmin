@@ -37,11 +37,13 @@ public class CharacterRecyclerViewAdapter extends RecyclerView.Adapter<Character
         holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    callback.onRecyclerViewItemClick(itemPosition, characters.get(itemPosition).getId());
+                    callback.onRecyclerViewItemClick(characters.get(itemPosition).getId());
                 }
         });
         holder.nameView.setText(characters.get(position).getName());
-        holder.imageView.setImageBitmap(characters.get(position).getImage());
+        if (characters.get(position).getImage() != null) {
+            holder.imageView.setImageBitmap(characters.get(position).getImage());
+        }
     }
 
     @Override

@@ -71,7 +71,7 @@ public class DirectorData implements DefaultDataController<Director> {
         ArrayList<Film> films = FilmData.getInstance(context).list();
         Boolean canDelete = true;
         for (int i = 0; i < films.size() && canDelete; i++) {
-            if ((long) films.get(i).getDirector() == (long) id) canDelete = false;
+            if (films.get(i).getDirector().equals(id)) canDelete = false;
         }
         if (canDelete) ctrl.delete(id);
     }

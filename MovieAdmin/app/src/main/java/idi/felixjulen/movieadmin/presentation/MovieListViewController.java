@@ -1,5 +1,6 @@
 package idi.felixjulen.movieadmin.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -70,9 +71,10 @@ public class MovieListViewController extends BaseViewController implements OnRec
     }
 
     @Override
-    public void onRecyclerViewItemClick(Integer position, Long itemEntityId) {
-//        Intent intent = new Intent(this, CharacterViewController.class);
-//        intent.putExtra(getString(R.string.itemEntityId), itemEntityId);
-//        startActivity(intent);
+    public void onRecyclerViewItemClick(Long itemEntityId) {
+        Intent intent = new Intent(this, MovieViewController.class);
+        intent.putExtra(getString(R.string.itemEntityId), itemEntityId);
+        intent.putExtra(getString(R.string.enable_navigation), true);
+        startActivity(intent);
     }
 }
