@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="idi.felixjulen.movieadmin">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/idi_mdb"
@@ -23,7 +26,7 @@
             android:name=".presentation.controller.listView.MovieListViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.controller.listView.CharacterSearchViewController"
+            android:name=".presentation.controller.listView.CharacterListViewController"
             android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.controller.AboutViewController"
@@ -45,6 +48,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.controller.singleEntityView.DirectorViewController"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.controller.editEntityView.CharacterEditViewController"
             android:screenOrientation="portrait" />
     </application>
 

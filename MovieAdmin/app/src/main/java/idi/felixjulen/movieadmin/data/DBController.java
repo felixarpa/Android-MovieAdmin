@@ -11,7 +11,7 @@ public class DBController extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     static final String TABLE_FILMS = "films";
-    static final String COLUMN_ID = "_id";
+    public static final String COLUMN_ID = "_id";
     public static final String COLUMN_TITLE = "title";
     public static final String COLUMN_COUNTRY = "country";
     public static final String COLUMN_YEAR = "year";

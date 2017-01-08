@@ -4,9 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 
 import java.util.ArrayList;
 
@@ -104,14 +101,8 @@ public class CtrlDirectorDB implements CtrlDirector {
         Director result = new Director();
         result.setId(cursor.getLong(cursor.getColumnIndex(DBController.COLUMN_ID)));
         result.setName(cursor.getString(cursor.getColumnIndex(DBController.COLUMN_NAME)));
-        String image = cursor.getString(cursor.getColumnIndex(DBController.COLUMN_IMAGE));
-        result.setImage(stringToBitmap(image));
+        result.setImage(cursor.getString(cursor.getColumnIndex(DBController.COLUMN_IMAGE)));
         return result;
-    }
-
-    private Bitmap stringToBitmap(String str) {
-        byte[] decodedString = Base64.decode(str, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
     }
 
     private ArrayList<Director> directorArrayListFrom(Cursor cursor) {

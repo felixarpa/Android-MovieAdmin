@@ -19,7 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 
 import idi.felixjulen.movieadmin.R;
-import idi.felixjulen.movieadmin.presentation.controller.listView.CharacterSearchViewController;
+import idi.felixjulen.movieadmin.presentation.controller.listView.CharacterListViewController;
 import idi.felixjulen.movieadmin.presentation.controller.listView.DirectorListViewController;
 import idi.felixjulen.movieadmin.presentation.controller.listView.MovieListViewController;
 
@@ -112,7 +112,7 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
                 break;
 
             case R.id.character_search_item:
-                intent = new Intent(this, CharacterSearchViewController.class);
+                intent = new Intent(this, CharacterListViewController.class);
                 break;
 
             case R.id.director_list_item:

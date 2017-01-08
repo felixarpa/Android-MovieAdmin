@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.data.CtrlCharacterDB;
@@ -35,6 +36,8 @@ public class FilmData implements FilmDataController {
     public void makeDefault() {
         ctrl.purge();
 
+        FileManager fm = FileManager.getInstance(context);
+
         Long bradlyCooperId = CtrlCharacterDB.getInstance(context).getByName(context.getString(R.string.bradly_cooper_name)).getId();
         Long christianBaleId = CtrlCharacterDB.getInstance(context).getByName(context.getString(R.string.christian_bale_name)).getId();
         Long jenniferLawrenceId = CtrlCharacterDB.getInstance(context).getByName(context.getString(R.string.jennifer_lawrence_name)).getId();
@@ -47,7 +50,8 @@ public class FilmData implements FilmDataController {
 
         ContentValues americanSniper = new ContentValues();
         americanSniper.put(DBController.COLUMN_TITLE, context.getString(R.string.american_sniper_name));
-        americanSniper.put(DBController.COLUMN_IMAGE, context.getString(R.string.american_sniper_image));
+        String americanSniperImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.americansniper));
+        americanSniper.put(DBController.COLUMN_IMAGE, americanSniperImageName);
         americanSniper.put(DBController.COLUMN_COUNTRY, "USA");
         americanSniper.put(DBController.COLUMN_YEAR, 2014);
         americanSniper.put(DBController.COLUMN_DIRECTOR, clintEastwoodId);
@@ -56,7 +60,8 @@ public class FilmData implements FilmDataController {
 
         ContentValues theDarkKnight = new ContentValues();
         theDarkKnight.put(DBController.COLUMN_TITLE, context.getString(R.string.the_dark_knight_name));
-        theDarkKnight.put(DBController.COLUMN_IMAGE, context.getString(R.string.the_dark_knight_image));
+        String theDarkKnightImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.thedarkknight));
+        theDarkKnight.put(DBController.COLUMN_IMAGE, theDarkKnightImageName);
         theDarkKnight.put(DBController.COLUMN_COUNTRY, "USA");
         theDarkKnight.put(DBController.COLUMN_YEAR, 2008);
         theDarkKnight.put(DBController.COLUMN_DIRECTOR, christopherNolanId);
@@ -65,7 +70,8 @@ public class FilmData implements FilmDataController {
 
         ContentValues silverLiningsPlaybook = new ContentValues();
         silverLiningsPlaybook.put(DBController.COLUMN_TITLE, context.getString(R.string.silver_lining_playbook_name));
-        silverLiningsPlaybook.put(DBController.COLUMN_IMAGE, context.getString(R.string.silver_lining_playbook_image));
+        String silverLiningsPlaybookImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.silverliningsplaybook));
+        silverLiningsPlaybook.put(DBController.COLUMN_IMAGE, silverLiningsPlaybookImageName);
         silverLiningsPlaybook.put(DBController.COLUMN_COUNTRY, "USA");
         silverLiningsPlaybook.put(DBController.COLUMN_YEAR, 2012);
         silverLiningsPlaybook.put(DBController.COLUMN_DIRECTOR, davidORussellId);
@@ -74,7 +80,8 @@ public class FilmData implements FilmDataController {
 
         ContentValues blackSwan = new ContentValues();
         blackSwan.put(DBController.COLUMN_TITLE, context.getString(R.string.black_swan_name));
-        blackSwan.put(DBController.COLUMN_IMAGE, context.getString(R.string.black_swan_image));
+        String blackSwanImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.blackswan));
+        blackSwan.put(DBController.COLUMN_IMAGE, blackSwanImageName);
         blackSwan.put(DBController.COLUMN_COUNTRY, "USA");
         blackSwan.put(DBController.COLUMN_YEAR, 2010);
         blackSwan.put(DBController.COLUMN_DIRECTOR, darrenAronofskyId);
@@ -109,5 +116,39 @@ public class FilmData implements FilmDataController {
     @Override
     public ArrayList<Film> getWithDirector(Long id) {
         return ctrl.getByDirector(id);
+    }
+
+    @Override
+    public ArrayList<Film> search(String filter) {
+        String upperFilter = filter.toUpperCase();
+        ArrayList<Film> all = ctrl.all();
+        ArrayList<Film> result = new ArrayList<>();
+        for (Film film : all) {
+            String name = film.getName().toUpperCase();
+            if (name.contains(upperFilter)) result.add(film);
+        }
+        return result;
+    }
+
+    @Override
+    public void update(Film film) {
+        ctrl.update(film.getId(), getValues(film));
+    }
+
+    @Override
+    public Long add(Film film) {
+        return ctrl.insert(getValues(film));
+    }
+
+    private ContentValues getValues(Film film) {
+        ContentValues values = new ContentValues();
+        values.put(DBController.COLUMN_TITLE, film.getTitle());
+        values.put(DBController.COLUMN_IMAGE, film.getImage());
+        values.put(DBController.COLUMN_COUNTRY, film.getCountry());
+        values.put(DBController.COLUMN_YEAR, film.getYear());
+        values.put(DBController.COLUMN_DIRECTOR, film.getDirector());
+        values.put(DBController.COLUMN_MAIN_CHARACTER, film.getProtagonist());
+        values.put(DBController.COLUMN_RATE, film.getRate());
+        return values;
     }
 }

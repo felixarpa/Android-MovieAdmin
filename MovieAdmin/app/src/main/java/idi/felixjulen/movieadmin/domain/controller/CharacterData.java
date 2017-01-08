@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.data.CtrlCharacterDB;
@@ -34,21 +35,27 @@ public class CharacterData implements DefaultDataController<Character> {
     public void makeDefault() {
         ctrl.purge();
 
+        FileManager fm = FileManager.getInstance(context);
+
         ContentValues bradlyCooper = new ContentValues();
         bradlyCooper.put(DBController.COLUMN_NAME, context.getString(R.string.bradly_cooper_name));
-        bradlyCooper.put(DBController.COLUMN_IMAGE, context.getString(R.string.bradly_cooper_image));
+        String bradlyCooperImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.bradlycooper));
+        bradlyCooper.put(DBController.COLUMN_IMAGE, bradlyCooperImageName);
 
         ContentValues christianBale = new ContentValues();
         christianBale.put(DBController.COLUMN_NAME, context.getString(R.string.christian_bale_name));
-        christianBale.put(DBController.COLUMN_IMAGE, context.getString(R.string.christian_bale_image));
+        String christianBaleImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.christianbale));
+        christianBale.put(DBController.COLUMN_IMAGE, christianBaleImageName);
 
         ContentValues jenniferLawrence = new ContentValues();
         jenniferLawrence.put(DBController.COLUMN_NAME, context.getString(R.string.jennifer_lawrence_name));
-        jenniferLawrence.put(DBController.COLUMN_IMAGE, context.getString(R.string.jennifer_lawrence_image));
+        String jenniferLawrenceImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.jenniferlawrence));
+        jenniferLawrence.put(DBController.COLUMN_IMAGE, jenniferLawrenceImageName);
 
         ContentValues nataliePortman = new ContentValues();
         nataliePortman.put(DBController.COLUMN_NAME, context.getString(R.string.natalie_portman_name));
-        nataliePortman.put(DBController.COLUMN_IMAGE, context.getString(R.string.natalie_portman_image));
+        String nataliePortmanImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.natalieportman));
+        nataliePortman.put(DBController.COLUMN_IMAGE, nataliePortmanImageName);
 
         ctrl.insert(christianBale);
         ctrl.insert(bradlyCooper);
@@ -75,6 +82,7 @@ public class CharacterData implements DefaultDataController<Character> {
         ctrl.delete(id);
     }
 
+    @Override
     public ArrayList<Character> search(String filter) {
         String upperFilter = filter.toUpperCase();
         ArrayList<Character> all = ctrl.all();
@@ -84,6 +92,23 @@ public class CharacterData implements DefaultDataController<Character> {
             if (name.contains(upperFilter)) result.add(character);
         }
         return result;
+    }
+
+    @Override
+    public void update(Character character) {
+        ctrl.update(character.getId(), getValues(character));
+    }
+
+    @Override
+    public Long add(Character character) {
+        return ctrl.insert(getValues(character));
+    }
+
+    private ContentValues getValues(Character character) {
+        ContentValues values = new ContentValues();
+        values.put(DBController.COLUMN_NAME, character.getName());
+        values.put(DBController.COLUMN_IMAGE, character.getImage());
+        return values;
     }
 
 }

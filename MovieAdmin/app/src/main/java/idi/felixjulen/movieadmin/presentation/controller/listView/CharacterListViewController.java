@@ -1,7 +1,7 @@
 package idi.felixjulen.movieadmin.presentation.controller.listView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,9 +15,10 @@ import java.util.ArrayList;
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.CharacterData;
 import idi.felixjulen.movieadmin.domain.model.Character;
+import idi.felixjulen.movieadmin.presentation.controller.editEntityView.CharacterEditViewController;
 import idi.felixjulen.movieadmin.presentation.controller.singleEntityView.CharacterViewController;
 
-public class CharacterSearchViewController extends EntityListViewController<Character> implements SearchView.OnQueryTextListener {
+public class CharacterListViewController extends EntityListViewController<Character> implements SearchView.OnQueryTextListener {
 
     private SearchView searchView;
     private String searchText = "";
@@ -28,9 +29,6 @@ public class CharacterSearchViewController extends EntityListViewController<Char
         rowLayoutResourceId = R.layout.entity_row_layout;
         titleResourceId = R.string.character_search;
         super.onCreate(savedInstanceState);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add);
-        fab.setImageResource(R.drawable.account_plus);
     }
 
     @Override
@@ -94,7 +92,9 @@ public class CharacterSearchViewController extends EntityListViewController<Char
 
     @Override
     protected void addEntity() {
-
+        Intent intent = new Intent(this, CharacterEditViewController.class);
+        intent.putExtra(getString(R.string.itemEntityId), -1L);
+        startActivity(intent);
     }
 
     @Override

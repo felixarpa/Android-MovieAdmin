@@ -2,6 +2,7 @@ package idi.felixjulen.movieadmin.presentation.controller.listView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -37,7 +38,9 @@ public abstract class EntityListViewController<T extends Entity> extends BaseVie
         emptyTextView = (TextView) findViewById(R.id.empty);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        findViewById(R.id.add).setOnClickListener(
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add);
+        fab.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -70,7 +73,6 @@ public abstract class EntityListViewController<T extends Entity> extends BaseVie
     public void onRecyclerViewItemClick(Long itemEntityId) {
         Intent intent = new Intent(this, entityActivity());
         intent.putExtra(getString(R.string.itemEntityId), itemEntityId);
-        intent.putExtra(getString(R.string.enable_navigation), true);
         startActivity(intent);
     }
 
@@ -79,6 +81,6 @@ public abstract class EntityListViewController<T extends Entity> extends BaseVie
     protected abstract Class<?> entityActivity();
 
     protected void setAdapterToRecyclerView() {
-        recyclerView.setAdapter(new EntityRecyclerViewAdapter<>(rowLayoutResourceId, data, this));
+        recyclerView.setAdapter(new EntityRecyclerViewAdapter<>(rowLayoutResourceId, data, this, this));
     }
 }

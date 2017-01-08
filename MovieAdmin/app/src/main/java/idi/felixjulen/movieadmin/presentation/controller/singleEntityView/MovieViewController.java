@@ -1,5 +1,6 @@
 package idi.felixjulen.movieadmin.presentation.controller.singleEntityView;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.CharacterData;
 import idi.felixjulen.movieadmin.domain.controller.DirectorData;
+import idi.felixjulen.movieadmin.domain.controller.FileManager;
 import idi.felixjulen.movieadmin.domain.controller.FilmData;
 import idi.felixjulen.movieadmin.domain.model.Character;
 import idi.felixjulen.movieadmin.domain.model.Director;
@@ -24,6 +26,15 @@ public class MovieViewController extends EntityViewController<Film> {
         removeYes = R.string.of_course;
         removeNo = R.string.not_really;
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        ImageView imageView = (ImageView) findViewById(R.id.image);
+        Bitmap image = FileManager.getInstance(this).loadImageFromStorage(data.getImage(), R.mipmap.film);
+        imageView.setImageBitmap(image);
 
         TextView rateView = (TextView) findViewById(R.id.rate);
         rateView.setText(String.valueOf(data.getRate()));
@@ -43,8 +54,12 @@ public class MovieViewController extends EntityViewController<Film> {
         nameView.setText(director.getName());
 
         if (director.getImage() != null) {
-            ImageView imageView = (ImageView) directorView.findViewById(R.id.image);
-            imageView.setImageBitmap(director.getImage());
+            imageView = (ImageView) directorView.findViewById(R.id.image);
+            Bitmap directorImage = FileManager.getInstance(this).loadImageFromStorage(
+                    director.getImage(),
+                    R.mipmap.profile
+            );
+            imageView.setImageBitmap(directorImage);
         }
 
         Character character = CharacterData.getInstance(this).get(data.getProtagonist());
@@ -56,8 +71,12 @@ public class MovieViewController extends EntityViewController<Film> {
         nameView.setText(character.getName());
 
         if (character.getImage() != null) {
-            ImageView imageView = (ImageView) characterView.findViewById(R.id.image);
-            imageView.setImageBitmap(character.getImage());
+            imageView = (ImageView) characterView.findViewById(R.id.image);
+            Bitmap characterImage = FileManager.getInstance(this).loadImageFromStorage(
+                    character.getImage(),
+                    R.mipmap.profile
+            );
+            imageView.setImageBitmap(characterImage);
         }
 
     }

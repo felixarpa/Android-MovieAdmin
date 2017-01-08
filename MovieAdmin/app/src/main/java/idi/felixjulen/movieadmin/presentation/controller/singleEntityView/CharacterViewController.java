@@ -17,6 +17,7 @@ import idi.felixjulen.movieadmin.domain.model.Character;
 import idi.felixjulen.movieadmin.domain.model.Film;
 import idi.felixjulen.movieadmin.presentation.adapter.FilmRecyclerViewAdapter;
 import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
+import idi.felixjulen.movieadmin.presentation.controller.editEntityView.CharacterEditViewController;
 
 public class CharacterViewController extends EntityViewController<Character> implements OnRecyclerViewItemAction {
 
@@ -36,6 +37,7 @@ public class CharacterViewController extends EntityViewController<Character> imp
 
         if (films.size() > 0) {
             FilmRecyclerViewAdapter adapter = new FilmRecyclerViewAdapter(films, this);
+            adapter.setContext(this);
             recyclerView.setAdapter(adapter);
         } else {
             TextView moviesHeader = (TextView) findViewById(R.id.movies_header);
@@ -48,7 +50,9 @@ public class CharacterViewController extends EntityViewController<Character> imp
 
     @Override
     protected void editEntity() {
-
+        Intent intent = new Intent(this, CharacterEditViewController.class);
+        intent.putExtra(getString(R.string.itemEntityId), id);
+        startActivity(intent);
     }
 
     @Override

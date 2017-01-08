@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/edit_iem"
+        android:id="@+id/edit_item"
         android:icon="@drawable/pencil"
         android:title="@string/edit"
         app:showAsAction="ifRoom" />

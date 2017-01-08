@@ -36,6 +36,7 @@ public class DirectorViewController extends EntityViewController<Director> imple
 
         if (films.size() > 0) {
             FilmRecyclerViewAdapter adapter = new FilmRecyclerViewAdapter(films, this);
+            adapter.setContext(this);
             recyclerView.setAdapter(adapter);
         } else {
             TextView moviesHeader = (TextView) findViewById(R.id.movies_header);

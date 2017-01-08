@@ -1,7 +1,6 @@
 package idi.felixjulen.movieadmin.presentation.controller.listView;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -19,9 +18,6 @@ public class DirectorListViewController extends EntityListViewController<Directo
         rowLayoutResourceId = R.layout.entity_row_layout;
         titleResourceId = R.string.directors;
         super.onCreate(savedInstanceState);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add);
-        fab.setImageResource(R.drawable.account_plus);
     }
 
     @Override

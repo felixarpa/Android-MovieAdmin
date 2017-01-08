@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.data.CtrlDirectorDB;
@@ -34,21 +35,27 @@ public class DirectorData implements DefaultDataController<Director> {
     public void makeDefault() {
         ctrl.purge();
 
+        FileManager fm = FileManager.getInstance(context);
+
         ContentValues christopherNolan = new ContentValues();
         christopherNolan.put(DBController.COLUMN_NAME, context.getString(R.string.christopher_nolan_name));
-        christopherNolan.put(DBController.COLUMN_IMAGE, context.getString(R.string.christopher_nolan_image));
+        String christopherNolanImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.christophernolan));
+        christopherNolan.put(DBController.COLUMN_IMAGE, christopherNolanImageName);
 
         ContentValues clintEastwood = new ContentValues();
         clintEastwood.put(DBController.COLUMN_NAME, context.getString(R.string.clint_eastwood_name));
-        clintEastwood.put(DBController.COLUMN_IMAGE, context.getString(R.string.clint_eastwood_image));
+        String clintEastwoodImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.clinteastwood));
+        clintEastwood.put(DBController.COLUMN_IMAGE, clintEastwoodImageName);
 
         ContentValues darrenAronofsky = new ContentValues();
         darrenAronofsky.put(DBController.COLUMN_NAME, context.getString(R.string.darren_aronofsky_name));
-        darrenAronofsky.put(DBController.COLUMN_IMAGE, context.getString(R.string.darren_aronofsky_image));
+        String darrenAronofskyImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.darrenaronofsky));
+        darrenAronofsky.put(DBController.COLUMN_IMAGE, darrenAronofskyImageName);
 
         ContentValues davidORussell = new ContentValues();
         davidORussell.put(DBController.COLUMN_NAME, context.getString(R.string.david_o_russell_name));
-        davidORussell.put(DBController.COLUMN_IMAGE, context.getString(R.string.david_o_russell_image));
+        String davidORussellImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.davidorussell));
+        davidORussell.put(DBController.COLUMN_IMAGE, davidORussellImageName);
 
         ctrl.insert(clintEastwood);
         ctrl.insert(christopherNolan);
@@ -74,5 +81,34 @@ public class DirectorData implements DefaultDataController<Director> {
             if (films.get(i).getDirector().equals(id)) canDelete = false;
         }
         if (canDelete) ctrl.delete(id);
+    }
+
+    @Override
+    public ArrayList<Director> search(String filter) {
+        String upperFilter = filter.toUpperCase();
+        ArrayList<Director> all = ctrl.all();
+        ArrayList<Director> result = new ArrayList<>();
+        for (Director director : all) {
+            String name = director.getName().toUpperCase();
+            if (name.contains(upperFilter)) result.add(director);
+        }
+        return result;
+    }
+
+    @Override
+    public void update(Director director) {
+        ctrl.update(director.getId(), getValues(director));
+    }
+
+    @Override
+    public Long add(Director director) {
+        return ctrl.insert(getValues(director));
+    }
+
+    private ContentValues getValues(Director director) {
+        ContentValues values = new ContentValues();
+        values.put(DBController.COLUMN_NAME, director.getName());
+        values.put(DBController.COLUMN_IMAGE, director.getImage());
+        return values;
     }
 }

@@ -49,6 +49,6 @@ public class SplashViewController extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this, "Starting Movie Admin", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Launching Movie Admin", Toast.LENGTH_SHORT).show();
     }
 }

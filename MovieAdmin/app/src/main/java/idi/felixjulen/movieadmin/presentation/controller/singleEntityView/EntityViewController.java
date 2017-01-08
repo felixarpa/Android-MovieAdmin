@@ -1,6 +1,7 @@
 package idi.felixjulen.movieadmin.presentation.controller.singleEntityView;
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import idi.felixjulen.movieadmin.R;
-import idi.felixjulen.movieadmin.domain.controller.FilmData;
+import idi.felixjulen.movieadmin.domain.controller.FileManager;
 import idi.felixjulen.movieadmin.domain.model.Entity;
 
 
@@ -42,7 +43,7 @@ public abstract class EntityViewController<T extends Entity> extends AppCompatAc
         setSupportActionBar(toolbar);
 
         Drawable arrowLeft = getDrawable(R.drawable.arrow_left);
-        if(arrowLeft != null) {
+        if (arrowLeft != null) {
             arrowLeft.mutate();
             arrowLeft.setColorFilter(getResources().getColor(R.color.md_white_1000), PorterDuff.Mode.SRC_ATOP);
             toolbar.setNavigationIcon(arrowLeft);
@@ -55,17 +56,23 @@ public abstract class EntityViewController<T extends Entity> extends AppCompatAc
             }
         });
 
-        data = getData();
+    }
 
-        FilmData.getInstance(this).get(id);
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        data = getData();
 
         TextView nameView = (TextView) findViewById(R.id.name);
         nameView.setText(data.getName());
 
         if (data.getImage() != null) {
             ImageView imageView = (ImageView) findViewById(R.id.image);
-            imageView.setImageBitmap(data.getImage());
+            Bitmap image = FileManager.getInstance(this).loadImageFromStorage(data.getImage(), R.mipmap.profile);
+            imageView.setImageBitmap(image);
         }
+
     }
 
     @Override
@@ -108,7 +115,7 @@ public abstract class EntityViewController<T extends Entity> extends AppCompatAc
                         .show();
                 break;
 
-            case R.id.edit_iem:
+            case R.id.edit_item:
                 editEntity();
                 break;
         }

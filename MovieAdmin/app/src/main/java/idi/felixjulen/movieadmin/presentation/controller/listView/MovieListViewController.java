@@ -1,6 +1,7 @@
 package idi.felixjulen.movieadmin.presentation.controller.listView;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,8 @@ public class MovieListViewController extends EntityListViewController<Film> {
         rowLayoutResourceId = R.layout.movie_row_layout;
         titleResourceId = R.string.app_name;
         super.onCreate(savedInstanceState);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add);
+        fab.setImageResource(R.drawable.plus);
     }
 
     @Override
@@ -46,6 +49,8 @@ public class MovieListViewController extends EntityListViewController<Film> {
     }
 
     protected void setAdapterToRecyclerView() {
-        recyclerView.setAdapter(new FilmRecyclerViewAdapter(data, this));
+        FilmRecyclerViewAdapter adapter = new FilmRecyclerViewAdapter(data, this);
+        adapter.setContext(this);
+        recyclerView.setAdapter(adapter);
     }
 }

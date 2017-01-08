@@ -1,12 +1,10 @@
 package idi.felixjulen.movieadmin.domain.model;
 
-import android.graphics.Bitmap;
-
 public class Entity {
 
     private Long _id;
     private String name;
-    private Bitmap image;
+    private String image;
 
     public Long getId() {
         return _id;
@@ -24,11 +22,11 @@ public class Entity {
         this.name = name;
     }
 
-    public Bitmap getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Bitmap image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

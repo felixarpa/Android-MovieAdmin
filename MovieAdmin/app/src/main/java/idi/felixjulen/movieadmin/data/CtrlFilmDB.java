@@ -4,9 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 
 import java.util.ArrayList;
 
@@ -142,11 +139,6 @@ public class CtrlFilmDB implements CtrlFilm {
         return result;
     }
 
-    private Bitmap stringToBitmap(String str) {
-        byte[] decodedString = Base64.decode(str, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-    }
-
     private Film cursorToFilm(Cursor cursor) {
         Film result = new Film();
         result.setId(cursor.getLong(cursor.getColumnIndex(DBController.COLUMN_ID)));
@@ -156,8 +148,7 @@ public class CtrlFilmDB implements CtrlFilm {
         result.setDirector(cursor.getLong(cursor.getColumnIndex(DBController.COLUMN_DIRECTOR)));
         result.setProtagonist(cursor.getLong(cursor.getColumnIndex(DBController.COLUMN_MAIN_CHARACTER)));
         result.setRate(cursor.getInt(cursor.getColumnIndex(DBController.COLUMN_RATE)));
-        String image = cursor.getString(cursor.getColumnIndex(DBController.COLUMN_IMAGE));
-        result.setImage(stringToBitmap(image));
+        result.setImage(cursor.getString(cursor.getColumnIndex(DBController.COLUMN_IMAGE)));
         return result;
     }
 
