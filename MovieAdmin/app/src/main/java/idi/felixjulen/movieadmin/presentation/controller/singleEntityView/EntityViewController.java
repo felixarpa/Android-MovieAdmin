@@ -35,8 +35,8 @@ public abstract class EntityViewController<T extends Entity> extends AppCompatAc
         super.onCreate(savedInstanceState);
         setContentView(layoutResourceId);
 
-        id = getIntent().getExtras().getLong(getString(R.string.itemEntityId), -1);
-        if (id == -1) finish();
+        id = getIntent().getExtras().getLong(getString(R.string.itemEntityId), -1L);
+        if (id == -1L) finish();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.no_text);

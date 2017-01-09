@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/md_white_1000">
 
     <android.support.v7.widget.Toolbar
@@ -15,40 +16,179 @@
         app:theme="@style/ToolbarStyle"
         app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
 
-        <ImageView
-            android:id="@+id/edit_image"
-            style="@style/ImageProfile"
-            android:scaleType="centerCrop"
-            android:layout_below="@id/toolbar"
-            android:src="@mipmap/film"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
 
-        <ImageView
-            style="@style/ImageProfile"
-            android:src="@mipmap/template"
-            android:layout_below="@id/toolbar"
-            android:tint="@color/md_white_1000"/>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/edit_name_input"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_below="@+id/edit_image"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="64dp"
-            android:hint="@string/title"
-            android:textSize="24sp"
-            android:textColor="@color/md_black_1000"
-            android:maxLines="1">
+            android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/edit_name"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/main_character_autocomplete"
+                android:orientation="horizontal">
 
-        </android.support.design.widget.TextInputLayout>
+                <Button
+                    android:id="@+id/save_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/md_white_1000"
+                    android:text="@string/save"/>
 
+                <Button
+                    android:id="@+id/cancel_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/md_white_1000"
+                    android:text="@string/cancel"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/edit_image"
+                style="@style/ImageProfile"
+                android:scaleType="centerCrop"
+                android:layout_alignParentTop="true"
+                android:src="@mipmap/profile"/>
+
+            <ImageView
+                style="@style/ImageProfile"
+                android:src="@mipmap/template"
+                android:layout_alignParentTop="true"
+                android:tint="@color/md_white_1000"/>
+
+            <NumberPicker
+                android:id="@+id/rate_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_below="@+id/edit_image"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="8dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edit_name_input"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_below="@+id/edit_image"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/rate_picker"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="64dp"
+                android:hint="@string/name"
+                android:textSize="24sp"
+                android:textColor="@color/md_black_1000"
+                android:maxLines="1"
+                app:errorEnabled="true">
+
+                <EditText
+                    android:id="@+id/edit_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/country_layout"
+                android:layout_below="@+id/edit_name_input"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14sp"
+                    android:text="@string/country_title"
+                    android:gravity="end|center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="2" />
+
+                <Spinner
+                    android:id="@+id/country"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/year_layout"
+                android:layout_below="@+id/country_layout"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14sp"
+                    android:text="@string/year_title"
+                    android:gravity="end|center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="2" />
+
+                <NumberPicker
+                    android:id="@+id/year_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+
+            <AutoCompleteTextView
+                android:hint="@string/director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="64dp"
+                android:id="@+id/director_autocomplete"
+                android:layout_below="@+id/year_layout" />
+
+            <AutoCompleteTextView
+                android:hint="@string/main_character"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="64dp"
+                android:id="@+id/main_character_autocomplete"
+                android:layout_below="@+id/director_autocomplete" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

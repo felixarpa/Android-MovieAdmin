@@ -17,6 +17,7 @@ import idi.felixjulen.movieadmin.domain.model.Director;
 import idi.felixjulen.movieadmin.domain.model.Film;
 import idi.felixjulen.movieadmin.presentation.adapter.FilmRecyclerViewAdapter;
 import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
+import idi.felixjulen.movieadmin.presentation.controller.editEntityView.DirectorEditViewController;
 
 public class DirectorViewController extends EntityViewController<Director> implements OnRecyclerViewItemAction {
 
@@ -49,7 +50,9 @@ public class DirectorViewController extends EntityViewController<Director> imple
 
     @Override
     protected void editEntity() {
-
+        Intent intent = new Intent(this, DirectorEditViewController.class);
+        intent.putExtra(getString(R.string.itemEntityId), id);
+        startActivity(intent);
     }
 
     @Override

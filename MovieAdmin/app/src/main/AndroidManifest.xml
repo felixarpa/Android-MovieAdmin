@@ -29,6 +29,9 @@
             android:name=".presentation.controller.listView.CharacterListViewController"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".presentation.controller.listView.DirectorListViewController"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".presentation.controller.AboutViewController"
             android:screenOrientation="portrait" />
         <activity
@@ -38,19 +41,22 @@
             android:name=".presentation.controller.SettingsViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.controller.singleEntityView.CharacterViewController"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".presentation.controller.singleEntityView.MovieViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.controller.listView.DirectorListViewController"
+            android:name=".presentation.controller.singleEntityView.CharacterViewController"
             android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.controller.singleEntityView.DirectorViewController"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".presentation.controller.editEntityView.MovieEditViewController"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".presentation.controller.editEntityView.CharacterEditViewController"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.controller.editEntityView.DirectorEditViewController"
             android:screenOrientation="portrait" />
     </application>
 

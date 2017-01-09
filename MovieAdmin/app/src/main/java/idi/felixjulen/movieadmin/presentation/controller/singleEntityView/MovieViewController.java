@@ -1,5 +1,6 @@
 package idi.felixjulen.movieadmin.presentation.controller.singleEntityView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import idi.felixjulen.movieadmin.domain.controller.FilmData;
 import idi.felixjulen.movieadmin.domain.model.Character;
 import idi.felixjulen.movieadmin.domain.model.Director;
 import idi.felixjulen.movieadmin.domain.model.Film;
+import idi.felixjulen.movieadmin.presentation.controller.editEntityView.MovieEditViewController;
 
 public class MovieViewController extends EntityViewController<Film> {
 
@@ -83,7 +85,9 @@ public class MovieViewController extends EntityViewController<Film> {
 
     @Override
     protected void editEntity() {
-
+        Intent intent = new Intent(this, MovieEditViewController.class);
+        intent.putExtra(getString(R.string.itemEntityId), id);
+        startActivity(intent);
     }
 
     @Override
