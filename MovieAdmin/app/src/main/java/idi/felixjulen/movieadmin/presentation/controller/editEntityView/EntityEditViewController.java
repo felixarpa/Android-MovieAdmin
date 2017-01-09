@@ -174,7 +174,7 @@ public abstract class EntityEditViewController<T extends Entity> extends AppComp
         return super.onOptionsItemSelected(item);
     }
 
-    private void doSave() {
+    protected void doSave() {
         if (nameEditText.getText().length() == 0) {
             nameTextInputLayout.setError(getString(R.string.empty_error));
         } else {

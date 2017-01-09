@@ -129,6 +129,7 @@ public class CtrlDirectorDB implements CtrlDirector {
             result = cursorToDirector(cursor);
         } else {
             result = new Director();
+            result.setId(-1L);
         }
         cursor.close();
         return result;

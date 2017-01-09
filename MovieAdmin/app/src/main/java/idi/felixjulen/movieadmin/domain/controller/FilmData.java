@@ -52,7 +52,7 @@ public class FilmData implements FilmDataController {
         americanSniper.put(DBController.COLUMN_TITLE, context.getString(R.string.american_sniper_name));
         String americanSniperImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.americansniper));
         americanSniper.put(DBController.COLUMN_IMAGE, americanSniperImageName);
-        americanSniper.put(DBController.COLUMN_COUNTRY, "USA");
+        americanSniper.put(DBController.COLUMN_COUNTRY, "United States");
         americanSniper.put(DBController.COLUMN_YEAR, 2014);
         americanSniper.put(DBController.COLUMN_DIRECTOR, clintEastwoodId);
         americanSniper.put(DBController.COLUMN_MAIN_CHARACTER, bradlyCooperId);
@@ -62,7 +62,7 @@ public class FilmData implements FilmDataController {
         theDarkKnight.put(DBController.COLUMN_TITLE, context.getString(R.string.the_dark_knight_name));
         String theDarkKnightImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.thedarkknight));
         theDarkKnight.put(DBController.COLUMN_IMAGE, theDarkKnightImageName);
-        theDarkKnight.put(DBController.COLUMN_COUNTRY, "USA");
+        theDarkKnight.put(DBController.COLUMN_COUNTRY, "United States");
         theDarkKnight.put(DBController.COLUMN_YEAR, 2008);
         theDarkKnight.put(DBController.COLUMN_DIRECTOR, christopherNolanId);
         theDarkKnight.put(DBController.COLUMN_MAIN_CHARACTER, christianBaleId);
@@ -72,7 +72,7 @@ public class FilmData implements FilmDataController {
         silverLiningsPlaybook.put(DBController.COLUMN_TITLE, context.getString(R.string.silver_lining_playbook_name));
         String silverLiningsPlaybookImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.silverliningsplaybook));
         silverLiningsPlaybook.put(DBController.COLUMN_IMAGE, silverLiningsPlaybookImageName);
-        silverLiningsPlaybook.put(DBController.COLUMN_COUNTRY, "USA");
+        silverLiningsPlaybook.put(DBController.COLUMN_COUNTRY, "United States");
         silverLiningsPlaybook.put(DBController.COLUMN_YEAR, 2012);
         silverLiningsPlaybook.put(DBController.COLUMN_DIRECTOR, davidORussellId);
         silverLiningsPlaybook.put(DBController.COLUMN_MAIN_CHARACTER, jenniferLawrenceId);
@@ -82,7 +82,7 @@ public class FilmData implements FilmDataController {
         blackSwan.put(DBController.COLUMN_TITLE, context.getString(R.string.black_swan_name));
         String blackSwanImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.blackswan));
         blackSwan.put(DBController.COLUMN_IMAGE, blackSwanImageName);
-        blackSwan.put(DBController.COLUMN_COUNTRY, "USA");
+        blackSwan.put(DBController.COLUMN_COUNTRY, "United States");
         blackSwan.put(DBController.COLUMN_YEAR, 2010);
         blackSwan.put(DBController.COLUMN_DIRECTOR, darrenAronofskyId);
         blackSwan.put(DBController.COLUMN_MAIN_CHARACTER, nataliePortmanId);
@@ -147,7 +147,7 @@ public class FilmData implements FilmDataController {
         values.put(DBController.COLUMN_COUNTRY, film.getCountry());
         values.put(DBController.COLUMN_YEAR, film.getYear());
         values.put(DBController.COLUMN_DIRECTOR, film.getDirector());
-        values.put(DBController.COLUMN_MAIN_CHARACTER, film.getProtagonist());
+        values.put(DBController.COLUMN_MAIN_CHARACTER, film.getMainCharacter());
         values.put(DBController.COLUMN_RATE, film.getRate());
         return values;
     }

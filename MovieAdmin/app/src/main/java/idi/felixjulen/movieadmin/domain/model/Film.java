@@ -12,7 +12,7 @@ public class Film extends Entity {
     private Long director;
     private String country;
     private Integer year;
-    private Long protagonist;
+    private Long mainCharacter;
     private Integer rate;
 
     public String getTitle() {
@@ -47,12 +47,12 @@ public class Film extends Entity {
         this.year = year;
     }
 
-    public Long getProtagonist() {
-        return protagonist;
+    public Long getMainCharacter() {
+        return mainCharacter;
     }
 
-    public void setProtagonist(Long protagonist) {
-        this.protagonist = protagonist;
+    public void setMainCharacter(Long mainCharacter) {
+        this.mainCharacter = mainCharacter;
     }
 
     public Integer getRate() {

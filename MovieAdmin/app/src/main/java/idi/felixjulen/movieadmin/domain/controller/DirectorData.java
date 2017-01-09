@@ -105,6 +105,10 @@ public class DirectorData implements DefaultDataController<Director> {
         return ctrl.insert(getValues(director));
     }
 
+    public Director getByName(String name) {
+        return ctrl.getByName(name);
+    }
+
     private ContentValues getValues(Director director) {
         ContentValues values = new ContentValues();
         values.put(DBController.COLUMN_NAME, director.getName());

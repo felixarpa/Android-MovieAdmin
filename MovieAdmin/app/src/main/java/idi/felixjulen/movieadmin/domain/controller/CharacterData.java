@@ -77,7 +77,7 @@ public class CharacterData implements DefaultDataController<Character> {
     public void delete(Long id) {
         ArrayList<Film> films = FilmData.getInstance(context).list();
         for (Film f : films) {
-            if (f.getProtagonist().equals(id)) FilmData.getInstance(context).delete(f.getId());
+            if (f.getMainCharacter().equals(id)) FilmData.getInstance(context).delete(f.getId());
         }
         ctrl.delete(id);
     }
@@ -102,6 +102,10 @@ public class CharacterData implements DefaultDataController<Character> {
     @Override
     public Long add(Character character) {
         return ctrl.insert(getValues(character));
+    }
+
+    public Character getByName(String name) {
+        return ctrl.getByName(name);
     }
 
     private ContentValues getValues(Character character) {

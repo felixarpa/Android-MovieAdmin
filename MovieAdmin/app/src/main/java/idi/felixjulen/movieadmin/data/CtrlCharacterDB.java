@@ -129,6 +129,7 @@ public class CtrlCharacterDB implements CtrlCharacter {
             result = cursorToCharacter(cursor);
         } else {
             result = new Character();
+            result.setId(-1L);
         }
         cursor.close();
         return result;

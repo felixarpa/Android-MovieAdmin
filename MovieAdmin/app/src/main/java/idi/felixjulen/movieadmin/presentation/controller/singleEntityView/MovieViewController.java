@@ -3,6 +3,7 @@ package idi.felixjulen.movieadmin.presentation.controller.singleEntityView;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -50,10 +51,13 @@ public class MovieViewController extends EntityViewController<Film> {
         Director director = DirectorData.getInstance(this).get(data.getDirector());
 
         FrameLayout directorFrame = (FrameLayout) findViewById(R.id.director);
+        directorFrame.removeAllViews();
         View directorView = getLayoutInflater().inflate(R.layout.entity_row_layout, directorFrame);
 
         TextView nameView = (TextView) directorView.findViewById(R.id.name);
-        nameView.setText(director.getName());
+        if (nameView != null) {
+            nameView.setText(director.getName());
+        }
 
         if (director.getImage() != null) {
             imageView = (ImageView) directorView.findViewById(R.id.image);
@@ -64,13 +68,16 @@ public class MovieViewController extends EntityViewController<Film> {
             imageView.setImageBitmap(directorImage);
         }
 
-        Character character = CharacterData.getInstance(this).get(data.getProtagonist());
+        Character character = CharacterData.getInstance(this).get(data.getMainCharacter());
 
         FrameLayout characterFrame = (FrameLayout) findViewById(R.id.main_character);
+        characterFrame.removeAllViews();
         View characterView = getLayoutInflater().inflate(R.layout.entity_row_layout, characterFrame);
 
         nameView = (TextView) characterView.findViewById(R.id.name);
-        nameView.setText(character.getName());
+        if (nameView != null) {
+            nameView.setText(character.getName());
+        }
 
         if (character.getImage() != null) {
             imageView = (ImageView) characterView.findViewById(R.id.image);
