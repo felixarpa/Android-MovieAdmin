@@ -6,12 +6,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,15 +20,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.Date;
 
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.FileManager;
+import idi.felixjulen.movieadmin.domain.controller.ImageData;
 import idi.felixjulen.movieadmin.domain.model.Entity;
 
-public abstract class EntityEditViewController<T extends Entity> extends AppCompatActivity {
+public abstract class EntityEditViewController<T extends Entity> extends AppCompatActivity implements View.OnClickListener {
 
     private static final Integer TAKE_PICTURE_REQUEST = 10;
     private static final Integer PICK_IMAGE_REQUEST = 11;
@@ -39,50 +42,49 @@ public abstract class EntityEditViewController<T extends Entity> extends AppComp
     protected TextInputLayout nameTextInputLayout;
     protected EditText nameEditText;
     protected Bitmap image;
+    private Boolean listenerDisabled;
+    private ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutResourceId);
 
+        progress = (ProgressBar) findViewById(R.id.progress_bar);
         imageView = (ImageView) findViewById(R.id.edit_image);
         nameTextInputLayout = (TextInputLayout) findViewById(R.id.edit_name_input);
         nameEditText = (EditText) findViewById(R.id.edit_name);
         Button saveButton = (Button) findViewById(R.id.save_button);
         Button cancelButton = (Button) findViewById(R.id.cancel_button);
 
-        id = getIntent().getExtras().getLong(getString(R.string.itemEntityId), -1);
-        if (id == -1) {
+        id = getIntent().getExtras().getLong(getString(R.string.itemEntityId), -1L);
+        if (id == -1L) {
             data = newData();
-            image = defaultImage();
+            data.setImage("image" + new Date().getTime() + ".png");
+            image = BitmapFactory.decodeResource(getResources(), R.mipmap.profile);
         } else {
             data = getData(id);
             nameEditText.setText(data.getName());
-            String name = data.getImage();
-            image = FileManager.getInstance(this).loadImageFromStorage(name, R.mipmap.profile);
-            imageView.setImageBitmap(image);
+            image = FileManager.getInstance(this).loadImageFromStorage(data.getImage(), R.mipmap.profile);
         }
+        imageView.setImageBitmap(image);
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doSave();
-            }
-        });
+        saveButton.setOnClickListener(this);
         View.OnClickListener cancelAction = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                if (listenerDisabled) {
+                    Toast.makeText(getApplicationContext(), "Loading image", Toast.LENGTH_SHORT).show();
+                } else {
+                    onBackPressed();
+                }
             }
         };
         cancelButton.setOnClickListener(cancelAction);
         registerForContextMenu(imageView);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openContextMenu(v);
-            }
-        });
+        imageView.setOnClickListener(this);
+
+        listenerDisabled = false;
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -108,19 +110,27 @@ public abstract class EntityEditViewController<T extends Entity> extends AppComp
         inflater.inflate(R.menu.choose_intent_menu, menu);
     }
 
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, TAKE_PICTURE_REQUEST);
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (listenerDisabled) return super.onContextItemSelected(item);
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.camera_item:
+                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(intent, TAKE_PICTURE_REQUEST);
+                }
+                break;
+
+            case R.id.file_item:
+                intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+                break;
         }
-    }
 
-    private void dispatchPickImageIntent() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-
+        return super.onContextItemSelected(item);
     }
 
     @Override
@@ -129,14 +139,13 @@ public abstract class EntityEditViewController<T extends Entity> extends AppComp
             if (requestCode == TAKE_PICTURE_REQUEST) {
                 Bundle extras = data.getExtras();
                 image = (Bitmap) extras.get("data");
-                imageView.setImageBitmap(image);
             } else if (requestCode == PICK_IMAGE_REQUEST) {
                 Uri uri = data.getData();
                 try {
                     image = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                    imageView.setImageBitmap(image);
                 } catch (IOException ignored) {}
             }
+            if (imageView != null) imageView.setImageBitmap(image);
         }
     }
 
@@ -165,46 +174,61 @@ public abstract class EntityEditViewController<T extends Entity> extends AppComp
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.camera_item:
-                dispatchTakePictureIntent();
-                break;
-
-            case R.id.file_item:
-                dispatchPickImageIntent();
-                break;
-        }
-
-        return super.onContextItemSelected(item);
-    }
-
     private void doSave() {
         if (nameEditText.getText().length() == 0) {
             nameTextInputLayout.setError(getString(R.string.empty_error));
         } else {
-            if (id == -1) {
-                data.setName(nameEditText.getText().toString());
-                String name = "image" + new Date().getTime() + ".png";
-                FileManager.getInstance(this).saveToInternalStorage(name, image);
-                data.setImage(name);
-                save();
-            } else {
-                data.setName(nameEditText.getText().toString());
-                FileManager.getInstance(this).saveToInternalStorage(data.getImage(), image);
-                update();
-            }
+            data.setName(nameEditText.getText().toString());
+            listenerDisabled = true;
+            progress.setVisibility(View.VISIBLE);
+            new SaveImageTask() {
+                @Override
+                protected void onPostExecute(Bitmap response) {
+                    if (imageView != null) imageView.setImageBitmap(response);
+                    if (progress != null) progress.setVisibility(View.GONE);
+                    if (id == -1L) {
+                        save();
+                    } else {
+                        update();
+                    }
+                }
+            }.execute(ImageData.build(image, data.getImage()));
         }
     }
 
-    private Bitmap defaultImage() {
-        return BitmapFactory.decodeResource(getResources(), R.mipmap.profile);
+    @Override
+    public void onClick(View v) {
+        if (listenerDisabled) {
+            Toast.makeText(getApplicationContext(), "Loading image", Toast.LENGTH_SHORT).show();
+        } else {
+            switch (v.getId()) {
+                case R.id.save_button:
+                    doSave();
+                    break;
+
+                case R.id.edit_image:
+                    openContextMenu(v);
+                    break;
+
+            }
+        }
     }
 
     protected abstract void update();
     protected abstract void save();
     protected abstract T getData(Long id);
     protected abstract T newData();
+
+    private class SaveImageTask extends AsyncTask<ImageData, Void, Bitmap> {
+
+        @Override
+        protected Bitmap doInBackground(ImageData... params) {
+            Bitmap image = params[0].getImage();
+            String name = params[0].getName();
+            FileManager.getInstance(getApplicationContext()).saveToInternalStorage(name, image);
+            return image;
+
+        }
+    }
 
 }

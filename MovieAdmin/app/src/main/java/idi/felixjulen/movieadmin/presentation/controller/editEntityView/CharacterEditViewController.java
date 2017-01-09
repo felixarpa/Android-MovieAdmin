@@ -25,11 +25,9 @@ public class CharacterEditViewController extends EntityEditViewController<Charac
     @Override
     protected void save() {
         Long newId = CharacterData.getInstance(this).add(data);
-        if (id == -1) {
-            Intent intent = new Intent(this, CharacterViewController.class);
-            intent.putExtra(getString(R.string.itemEntityId), newId);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(this, CharacterViewController.class);
+        intent.putExtra(getString(R.string.itemEntityId), newId);
+        startActivity(intent);
         finish();
     }
 
@@ -42,4 +40,5 @@ public class CharacterEditViewController extends EntityEditViewController<Charac
     protected Character newData() {
         return new Character();
     }
+
 }

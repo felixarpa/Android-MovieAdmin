@@ -43,41 +43,48 @@
         app:theme="@style/ToolbarStyle"
         app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
 
-        <ImageView
-            android:id="@+id/edit_image"
-            style="@style/ImageProfile"
-            android:scaleType="centerCrop"
-            android:layout_below="@id/toolbar"
-            android:src="@mipmap/profile"/>
+    <ImageView
+        android:id="@+id/edit_image"
+        style="@style/ImageProfile"
+        android:scaleType="centerCrop"
+        android:layout_below="@id/toolbar"
+        android:src="@mipmap/profile"/>
 
-        <ImageView
-            style="@style/ImageProfile"
-            android:src="@mipmap/template"
-            android:layout_below="@id/toolbar"
-            android:tint="@color/md_white_1000"/>
+    <ImageView
+        style="@style/ImageProfile"
+        android:src="@mipmap/template"
+        android:layout_below="@id/toolbar"
+        android:tint="@color/md_white_1000"/>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/edit_name_input"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/edit_name_input"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/edit_image"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="64dp"
+        android:hint="@string/name"
+        android:textSize="24sp"
+        android:textColor="@color/md_black_1000"
+        android:maxLines="1"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true">
+
+        <EditText
+            android:id="@+id/edit_name"
             android:layout_width="match_parent"
-            android:layout_below="@+id/edit_image"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="64dp"
-            android:hint="@string/name"
-            android:textSize="24sp"
-            android:textColor="@color/md_black_1000"
-            android:maxLines="1"
-            android:layout_height="wrap_content"
-            app:errorEnabled="true">
+            android:layout_height="match_parent"
+            android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/edit_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName" />
+    </android.support.design.widget.TextInputLayout>
 
-        </android.support.design.widget.TextInputLayout>
-
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
 
 </RelativeLayout>
