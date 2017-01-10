@@ -39,22 +39,22 @@ public class DirectorData implements DefaultDataController<Director> {
 
         ContentValues christopherNolan = new ContentValues();
         christopherNolan.put(DBController.COLUMN_NAME, context.getString(R.string.christopher_nolan_name));
-        String christopherNolanImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.christophernolan));
+        String christopherNolanImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.christopher_nolan));
         christopherNolan.put(DBController.COLUMN_IMAGE, christopherNolanImageName);
 
         ContentValues clintEastwood = new ContentValues();
         clintEastwood.put(DBController.COLUMN_NAME, context.getString(R.string.clint_eastwood_name));
-        String clintEastwoodImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.clinteastwood));
+        String clintEastwoodImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.clint_eastwood));
         clintEastwood.put(DBController.COLUMN_IMAGE, clintEastwoodImageName);
 
         ContentValues darrenAronofsky = new ContentValues();
         darrenAronofsky.put(DBController.COLUMN_NAME, context.getString(R.string.darren_aronofsky_name));
-        String darrenAronofskyImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.darrenaronofsky));
+        String darrenAronofskyImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.darren_aronofsky));
         darrenAronofsky.put(DBController.COLUMN_IMAGE, darrenAronofskyImageName);
 
         ContentValues davidORussell = new ContentValues();
         davidORussell.put(DBController.COLUMN_NAME, context.getString(R.string.david_o_russell_name));
-        String davidORussellImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.davidorussell));
+        String davidORussellImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.david_orussell));
         davidORussell.put(DBController.COLUMN_IMAGE, davidORussellImageName);
 
         ctrl.insert(clintEastwood);

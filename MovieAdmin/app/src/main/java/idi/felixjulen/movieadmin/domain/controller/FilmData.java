@@ -50,7 +50,7 @@ public class FilmData implements FilmDataController {
 
         ContentValues americanSniper = new ContentValues();
         americanSniper.put(DBController.COLUMN_TITLE, context.getString(R.string.american_sniper_name));
-        String americanSniperImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.americansniper));
+        String americanSniperImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.american_sniper));
         americanSniper.put(DBController.COLUMN_IMAGE, americanSniperImageName);
         americanSniper.put(DBController.COLUMN_COUNTRY, "United States");
         americanSniper.put(DBController.COLUMN_YEAR, 2014);
@@ -60,7 +60,7 @@ public class FilmData implements FilmDataController {
 
         ContentValues theDarkKnight = new ContentValues();
         theDarkKnight.put(DBController.COLUMN_TITLE, context.getString(R.string.the_dark_knight_name));
-        String theDarkKnightImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.thedarkknight));
+        String theDarkKnightImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.the_dark_knight));
         theDarkKnight.put(DBController.COLUMN_IMAGE, theDarkKnightImageName);
         theDarkKnight.put(DBController.COLUMN_COUNTRY, "United States");
         theDarkKnight.put(DBController.COLUMN_YEAR, 2008);
@@ -70,7 +70,7 @@ public class FilmData implements FilmDataController {
 
         ContentValues silverLiningsPlaybook = new ContentValues();
         silverLiningsPlaybook.put(DBController.COLUMN_TITLE, context.getString(R.string.silver_lining_playbook_name));
-        String silverLiningsPlaybookImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.silverliningsplaybook));
+        String silverLiningsPlaybookImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.silver_linings_playbook));
         silverLiningsPlaybook.put(DBController.COLUMN_IMAGE, silverLiningsPlaybookImageName);
         silverLiningsPlaybook.put(DBController.COLUMN_COUNTRY, "United States");
         silverLiningsPlaybook.put(DBController.COLUMN_YEAR, 2012);
@@ -80,7 +80,7 @@ public class FilmData implements FilmDataController {
 
         ContentValues blackSwan = new ContentValues();
         blackSwan.put(DBController.COLUMN_TITLE, context.getString(R.string.black_swan_name));
-        String blackSwanImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.blackswan));
+        String blackSwanImageName = fm.saveToInternalStorage("image" + new Date().getTime() + ".png", FileManager.resourceToBitmap(R.mipmap.black_swan));
         blackSwan.put(DBController.COLUMN_IMAGE, blackSwanImageName);
         blackSwan.put(DBController.COLUMN_COUNTRY, "United States");
         blackSwan.put(DBController.COLUMN_YEAR, 2010);
