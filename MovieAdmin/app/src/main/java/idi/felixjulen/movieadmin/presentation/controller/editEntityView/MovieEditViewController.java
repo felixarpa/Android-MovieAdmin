@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.NumberPicker;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -24,42 +24,46 @@ import idi.felixjulen.movieadmin.presentation.controller.singleEntityView.MovieV
 
 public class MovieEditViewController extends EntityEditViewController<Film> {
 
-    private NumberPicker ratePicker;
+    private RatingBar rateBar;
     private Spinner countrySpinner;
-    private NumberPicker yearPicker;
+    private Spinner yearSpinner;
     private AutoCompleteTextView directorText;
     private AutoCompleteTextView mainCharacterText;
     private ArrayAdapter<String> countriesArrayAdapter;
+    private ArrayAdapter<String> yearArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         layoutResourceId = R.layout.movie_edit_view;
+        alternativeResourceId = R.mipmap.film;
         super.onCreate(savedInstanceState);
 
-        ratePicker = (NumberPicker) findViewById(R.id.rate_picker);
+        rateBar = (RatingBar) findViewById(R.id.rating_bar);
         countrySpinner = (Spinner) findViewById(R.id.country);
-        yearPicker = (NumberPicker) findViewById(R.id.year_picker);
+        yearSpinner = (Spinner) findViewById(R.id.year);
         directorText = (AutoCompleteTextView) findViewById(R.id.director_autocomplete);
         mainCharacterText = (AutoCompleteTextView) findViewById(R.id.main_character_autocomplete);
-
-        ratePicker.setMinValue(10);
-        ratePicker.setMaxValue(0);
-        ratePicker.setWrapSelectorWheel(false);
 
         String[] countries = getResources().getStringArray(R.array.countries_array);
         countriesArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, countries);
         countriesArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         countrySpinner.setAdapter(countriesArrayAdapter);
 
-        yearPicker.setMinValue(Calendar.getInstance().get(Calendar.YEAR));
-        yearPicker.setMaxValue(1896);
-        yearPicker.setWrapSelectorWheel(false);
+        Integer currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        ArrayList<String> years = new ArrayList<>();
+        for (int i = currentYear; i >= 1896; i--) {
+            years.add(String.valueOf(i));
+        }
+        yearArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, years);
+        yearArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSpinner.setAdapter(yearArrayAdapter);
 
         ArrayAdapter<String> directorArrayAdapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
                 getDirectorStringArray(DirectorData.getInstance(this).list())
         );
+        directorArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         directorText.setAdapter(directorArrayAdapter);
 
         ArrayAdapter<String> mainCharacterArrayAdapter = new ArrayAdapter<>(
@@ -67,15 +71,17 @@ public class MovieEditViewController extends EntityEditViewController<Film> {
                 android.R.layout.simple_spinner_item,
                 getCharacterStringArray(CharacterData.getInstance(this).list())
         );
+        mainCharacterArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mainCharacterText.setAdapter(mainCharacterArrayAdapter);
 
         if (id != -1L) {
-            Director director = DirectorData.getInstance(this).get(data.getDirector());
-            Character character = CharacterData.getInstance(this).get(data.getMainCharacter());
-            ratePicker.setValue(data.getRate());
+            Float rate = ((float) data.getRate()) / 2;
+            rateBar.setRating(rate);
             countrySpinner.setSelection(countriesArrayAdapter.getPosition(data.getCountry()));
-            yearPicker.setValue(data.getYear());
+            yearSpinner.setSelection(yearArrayAdapter.getPosition(String.valueOf(data.getYear())));
+            Director director = DirectorData.getInstance(this).get(data.getDirector());
             directorText.setText(director.getName());
+            Character character = CharacterData.getInstance(this).get(data.getMainCharacter());
             mainCharacterText.setText(character.getName());
         }
 
@@ -175,9 +181,11 @@ public class MovieEditViewController extends EntityEditViewController<Film> {
     }
 
     private void doSuperSave() {
-        data.setRate(ratePicker.getValue());
+        //data.setRate(ratePicker.getValue());
+        Integer rate = (int) (rateBar.getRating() * 2);
+        data.setRate(rate);
         data.setCountry(countriesArrayAdapter.getItem(countrySpinner.getSelectedItemPosition()));
-        data.setYear(yearPicker.getValue());
+        data.setYear(Integer.valueOf(yearArrayAdapter.getItem(yearSpinner.getSelectedItemPosition())));
 
         String directorName = directorText.getText().toString();
         Director director = DirectorData.getInstance(this).getByName(directorName);

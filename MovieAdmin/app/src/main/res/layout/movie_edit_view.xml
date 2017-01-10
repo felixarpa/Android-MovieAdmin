@@ -7,13 +7,19 @@
     android:layout_height="wrap_content"
     android:background="@color/md_white_1000">
 
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"
-        app:theme="@style/ToolbarStyle"
+        android:theme="@style/ToolbarStyle"
         app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
 
     <ScrollView
@@ -66,26 +72,13 @@
                 android:layout_alignParentTop="true"
                 android:tint="@color/md_white_1000"/>
 
-            <NumberPicker
-                android:id="@+id/rate_picker"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:layout_below="@+id/edit_image"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="64dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="8dp"/>
-
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/edit_name_input"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_below="@+id/edit_image"
-                android:layout_alignParentStart="true"
-                android:layout_toStartOf="@+id/rate_picker"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="64dp"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="64dp"
                 android:hint="@string/name"
@@ -102,9 +95,19 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <RatingBar
+                android:id="@+id/rating_bar"
+                style="@style/RatingBar"
+                android:layout_below="@+id/edit_name_input"
+                android:stepSize="0.5"
+                android:numStars="5"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
             <LinearLayout
                 android:id="@+id/country_layout"
-                android:layout_below="@+id/edit_name_input"
+                android:layout_below="@+id/rating_bar"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:layout_marginStart="32dp"
@@ -134,7 +137,7 @@
                 android:id="@+id/year_layout"
                 android:layout_below="@+id/country_layout"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:orientation="horizontal">
@@ -148,13 +151,13 @@
                     android:layout_marginEnd="8dp"
                     android:layout_weight="2" />
 
-                <NumberPicker
-                    android:id="@+id/year_picker"
+                <Spinner
+                    android:id="@+id/year"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:layout_marginStart="8dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
@@ -167,6 +170,7 @@
                 android:layout_marginEnd="64dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="64dp"
+                android:inputType="textPersonName"
                 android:id="@+id/director_autocomplete"
                 android:layout_below="@+id/year_layout" />
 
@@ -178,6 +182,7 @@
                 android:layout_marginEnd="64dp"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="64dp"
+                android:inputType="textPersonName"
                 android:id="@+id/main_character_autocomplete"
                 android:layout_below="@+id/director_autocomplete" />
 

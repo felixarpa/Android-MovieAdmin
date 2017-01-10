@@ -1,5 +1,6 @@
 package idi.felixjulen.movieadmin.presentation.controller.listView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.DirectorData;
 import idi.felixjulen.movieadmin.domain.model.Director;
 import idi.felixjulen.movieadmin.presentation.callback.OnRecyclerViewItemAction;
+import idi.felixjulen.movieadmin.presentation.controller.editEntityView.DirectorEditViewController;
 import idi.felixjulen.movieadmin.presentation.controller.singleEntityView.DirectorViewController;
 
 public class DirectorListViewController extends EntityListViewController<Director> implements OnRecyclerViewItemAction {
@@ -32,7 +34,9 @@ public class DirectorListViewController extends EntityListViewController<Directo
 
     @Override
     protected void addEntity() {
-
+        Intent intent = new Intent(this, DirectorEditViewController.class);
+        intent.putExtra(getString(R.string.itemEntityId), -1L);
+        startActivity(intent);
     }
 
     @Override

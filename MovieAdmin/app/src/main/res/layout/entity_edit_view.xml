@@ -2,9 +2,17 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_white_1000">
+
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:ignore="UselessLeaf" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +48,7 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"
-        app:theme="@style/ToolbarStyle"
+        android:theme="@style/ToolbarStyle"
         app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
 
     <ImageView

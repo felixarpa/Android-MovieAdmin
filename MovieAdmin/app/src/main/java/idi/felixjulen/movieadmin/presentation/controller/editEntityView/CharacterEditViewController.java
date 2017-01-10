@@ -13,6 +13,7 @@ public class CharacterEditViewController extends EntityEditViewController<Charac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         layoutResourceId = R.layout.entity_edit_view;
+        alternativeResourceId = R.mipmap.profile;
         super.onCreate(savedInstanceState);
     }
 

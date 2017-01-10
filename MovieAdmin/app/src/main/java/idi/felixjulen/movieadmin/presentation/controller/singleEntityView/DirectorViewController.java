@@ -67,8 +67,8 @@ public class DirectorViewController extends EntityViewController<Director> imple
 
     @Override
     public void onRecyclerViewItemClick(Long itemEntityId) {
-        Intent intent = new Intent(this, MovieViewController.class);
-        intent.putExtra(getString(R.string.itemEntityId), clickedEntityId);
+        Intent intent = new Intent(getApplicationContext(), MovieViewController.class);
+        intent.putExtra(getString(R.string.itemEntityId), itemEntityId);
         startActivity(intent);
     }
 }

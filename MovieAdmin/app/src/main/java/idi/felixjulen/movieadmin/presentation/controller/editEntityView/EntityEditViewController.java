@@ -36,6 +36,7 @@ public abstract class EntityEditViewController<T extends Entity> extends AppComp
     private static final Integer TAKE_PICTURE_REQUEST = 10;
     private static final Integer PICK_IMAGE_REQUEST = 11;
     protected Integer layoutResourceId;
+    protected Integer alternativeResourceId;
     protected Long id;
     protected T data;
     protected ImageView imageView;
@@ -61,11 +62,11 @@ public abstract class EntityEditViewController<T extends Entity> extends AppComp
         if (id == -1L) {
             data = newData();
             data.setImage("image" + new Date().getTime() + ".png");
-            image = BitmapFactory.decodeResource(getResources(), R.mipmap.profile);
+            image = BitmapFactory.decodeResource(getResources(), alternativeResourceId);
         } else {
             data = getData(id);
             nameEditText.setText(data.getName());
-            image = FileManager.getInstance(this).loadImageFromStorage(data.getImage(), R.mipmap.profile);
+            image = FileManager.getInstance(this).loadImageFromStorage(data.getImage(), alternativeResourceId);
         }
         imageView.setImageBitmap(image);
 

@@ -22,7 +22,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:theme="@style/ToolbarStyle"/>
+            android:theme="@style/ToolbarStyle"/>
 
         <FrameLayout
             android:id="@+id/main_frame"

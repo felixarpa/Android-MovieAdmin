@@ -68,7 +68,7 @@ public class CharacterViewController extends EntityViewController<Character> imp
     @Override
     public void onRecyclerViewItemClick(Long itemEntityId) {
         Intent intent = new Intent(this, MovieViewController.class);
-        intent.putExtra(getString(R.string.itemEntityId), clickedEntityId);
+        intent.putExtra(getString(R.string.itemEntityId), itemEntityId);
         startActivity(intent);
     }
 }

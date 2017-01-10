@@ -10,7 +10,7 @@
     <string name="content_description">content_description</string>
     <string name="search_title">Search</string>
     <string name="search_close_button">android:id/search_close_btn</string>
-    <string name="empty">Empty ¯\\_(ツ)_/¯</string>
+    <string name="empty">No results ¯\\_(ツ)_/¯</string>
     <string name="itemEntityId">itemEntityId</string>
 
     <!--NAMES-->
@@ -59,8 +59,13 @@
     <string name="empty_error">This cannot be empty</string>
     <string name="choose_file">Choose file from gallery</string>
     <string name="take_pic">Take picture from camera</string>
+    <string name="sort_by">Order by…</string>
 
     <string-array name="countries_array">
+        <item>United States</item>
+        <item>United Kingdom</item>
+        <item>France</item>
+        <item>Spain</item>
         <item>Afghanistan</item>
         <item>Albania</item>
         <item>Algeria</item>
@@ -135,7 +140,6 @@
         <item>Fiji</item>
         <item>Finland</item>
         <item>Former Yugoslav Republic of Macedonia</item>
-        <item>France</item>
         <item>French Guiana</item>
         <item>French Polynesia</item>
         <item>French Southern Territories</item>
@@ -259,7 +263,6 @@
         <item>South Georgia and the South Sandwich Islands</item>
         <item>South Korea</item>
         <item>South Sudan</item>
-        <item>Spain</item>
         <item>Sri Lanka</item>
         <item>Sudan</item>
         <item>Suriname</item>
@@ -287,8 +290,6 @@
         <item>Uganda</item>
         <item>Ukraine</item>
         <item>United Arab Emirates</item>
-        <item>United Kingdom</item>
-        <item>United States</item>
         <item>United States Minor Outlying Islands</item>
         <item>Uruguay</item>
         <item>Uzbekistan</item>
