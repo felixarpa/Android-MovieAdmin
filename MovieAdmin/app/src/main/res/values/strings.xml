@@ -68,6 +68,45 @@
     <string name="app_by">Android App by</string>
     <string name="names">Fèlix Arribas\nJulen Zubiaur</string>
     <string name="subject">Interacció i Disseny d\'Interficies</string>
+    <string name="faq_catalan_title">FAQ (Catalan)</string>
+    <string name="title_1">Dades ordenades per any d\'estrena i llista de les pel·lícules ordenades per títol</string>
+    <string name="content_1">Dintre de Movies pots escollir per què ordenar. Per defecte està posat Title però es pot canviar per Year o Country.</string>
+    <string name="title_2">
+Donar d\'alta elements de la base de dades
+    </string>
+    <string name="content_2">
+A qualsevol vista de cada entitat: Movie, Character o Director. A baix a la dreta hi ha un botó que et porta a una nova pantalla on pots donar d\'alta l\'entitat.
+    </string>
+    <string name="title_3">
+Procediment d\'esborrat (Purge mode)
+    </string>
+    <string name="content_3">
+S\'activa a la pantalla inicial, al menú de dalt a la dreta.\n
+Cal anar amb compte amb aquest mode, només clicant una entitat aquesta és borra de la base de dades.\n
+Encara que era un requisit del sistema, l\'equip de desenvolupadors recomana que esborri els elements a partir de la vista detallada de l\'entitat (Icona del cubell de les escombraries).
+    </string>
+    <string name="title_4">
+Menú de l\'aplicació
+    </string>
+    <string name="content_4">
+El menú lateral es pot accedir de dues maneres:\n
+- Fent lliscar el dit d\'esquerra a dreta des de l\'inici de la pantalla.\n
+- Clicant la icona de dalt a l\'esquerra.
+    </string>
+    <string name="title_5">
+Cercar i mostrar les pel·lícules en què participa un determinat actor/actriu
+    </string>
+    <string name="content_5">
+A la pantalla Search Character pots buscar els actors i les actrius per nom.\n
+Un cop seleccionis l\'actor o actriu podràs veure totes les pel·lícules que participa.
+    </string>
+    <string name="title_6">
+Modificar nota (i molt més)
+    </string>
+    <string name="content_6">
+Dins de la vista detallada d\'una entitat pots editar tots els seus paràmetres clicant el llapis que es mostra a la part superior.\n
+Un cop editant, per canviar la foto, simplement clica la foto i podràs fer una foto nova o escollir una de la teva galeria.
+    </string>
 
     <string-array name="countries_array">
         <item>United States</item>
