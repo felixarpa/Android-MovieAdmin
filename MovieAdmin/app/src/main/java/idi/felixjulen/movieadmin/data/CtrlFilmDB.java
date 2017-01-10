@@ -19,12 +19,12 @@ public class CtrlFilmDB implements CtrlFilm {
     private String[] columns = {
             DBController.COLUMN_ID,
             DBController.COLUMN_TITLE,
+            DBController.COLUMN_IMAGE,
             DBController.COLUMN_COUNTRY,
             DBController.COLUMN_YEAR,
             DBController.COLUMN_DIRECTOR,
             DBController.COLUMN_MAIN_CHARACTER,
-            DBController.COLUMN_RATE,
-            DBController.COLUMN_IMAGE
+            DBController.COLUMN_RATE
     };
 
     public static CtrlFilm getInstance(Context context) {

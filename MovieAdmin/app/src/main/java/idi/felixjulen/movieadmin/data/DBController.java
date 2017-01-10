@@ -8,7 +8,7 @@ import android.util.Log;
 public class DBController extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "films.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     static final String TABLE_FILMS = "films";
     public static final String COLUMN_ID = "_id";
@@ -25,7 +25,6 @@ public class DBController extends SQLiteOpenHelper {
 
     static final String TABLE_CHARACTER = "characters";
 
-    // Database creation sql statement
     private static final String CREATE_FILM =
             "create table " + TABLE_FILMS + "( "
             + COLUMN_ID + " integer primary key autoincrement, "

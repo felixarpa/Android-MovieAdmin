@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,7 @@ public class CtrlCharacterDB implements CtrlCharacter {
 
     @Override
     public Long insert(ContentValues values) {
+        Log.v("INSERT_IMAGE", DBController.COLUMN_IMAGE + ": " + String.valueOf(values.get(DBController.COLUMN_IMAGE)));
         return writableDatabase.insert(
                 DBController.TABLE_CHARACTER,
                 null,
