@@ -60,6 +60,14 @@
     <string name="choose_file">Choose file from gallery</string>
     <string name="take_pic">Take picture from camera</string>
     <string name="sort_by">Order by…</string>
+    <string name="purge_mode">Purge mode</string>
+    <string name="purge_message">You ara about to enter to purge mode. This means that if you click into a movie you will remove it forever. Do you want to continue?</string>
+    <string name="done">Done</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="app_by">Android App by</string>
+    <string name="names">Fèlix Arribas\nJulen Zubiaur</string>
+    <string name="subject">Interacció i Disseny d\'Interficies</string>
 
     <string-array name="countries_array">
         <item>United States</item>

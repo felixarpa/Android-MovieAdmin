@@ -29,7 +29,7 @@ public class SplashViewController extends AppCompatActivity {
         }
         sharedPreferences.edit().putBoolean(BaseViewController.firstUsage, false).apply();
 
-        new CountDownTimer(1500, 1500) {
+        new CountDownTimer(1200, 1200) {
             @Override
             public void onTick(long millisUntilFinished) {
 

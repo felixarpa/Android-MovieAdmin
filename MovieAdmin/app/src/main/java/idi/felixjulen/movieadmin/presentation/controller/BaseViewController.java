@@ -33,7 +33,6 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
             R.drawable.movie,
             R.drawable.account,
             R.drawable.account_outline,
-            R.drawable.settings,
             R.drawable.help_circle,
             R.drawable.information
     };
@@ -117,10 +116,6 @@ public abstract class BaseViewController extends AppCompatActivity implements Na
 
             case R.id.director_list_item:
                 intent = new Intent(this, DirectorListViewController.class);
-                break;
-
-            case R.id.settings_item:
-                intent = new Intent(this, SettingsViewController.class);
                 break;
 
             case R.id.help_item:

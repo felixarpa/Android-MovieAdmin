@@ -38,9 +38,6 @@
             android:name=".presentation.controller.HelpViewController"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.controller.SettingsViewController"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".presentation.controller.singleEntityView.MovieViewController"
             android:screenOrientation="portrait" />
         <activity

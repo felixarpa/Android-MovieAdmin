@@ -25,6 +25,7 @@ public abstract class EntityListViewController<T extends Entity> extends BaseVie
     protected Integer layoutResourceId;
     protected Integer titleResourceId;
     protected Integer rowLayoutResourceId;
+    protected FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public abstract class EntityListViewController<T extends Entity> extends BaseVie
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add);
+        fab = (FloatingActionButton) findViewById(R.id.add);
         fab.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
