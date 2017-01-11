@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.CharacterData;
@@ -181,7 +182,6 @@ public class MovieEditViewController extends EntityEditViewController<Film> {
     }
 
     private void doSuperSave() {
-        //data.setRate(ratePicker.getValue());
         Integer rate = (int) (rateBar.getRating() * 2);
         data.setRate(rate);
         data.setCountry(countriesArrayAdapter.getItem(countrySpinner.getSelectedItemPosition()));
@@ -191,7 +191,7 @@ public class MovieEditViewController extends EntityEditViewController<Film> {
         Director director = DirectorData.getInstance(this).getByName(directorName);
         if (director.getId() == -1L) {
             director.setName(directorName);
-            director.setImage("");
+            director.setImage("image" + new Date().getTime() + ".png");
             director.setId(DirectorData.getInstance(this).add(director));
         }
         data.setDirector(director.getId());
@@ -200,7 +200,7 @@ public class MovieEditViewController extends EntityEditViewController<Film> {
         Character character = CharacterData.getInstance(this).getByName(characterName);
         if (character.getId() == -1L) {
             character.setName(characterName);
-            character.setImage("");
+            character.setImage("image" + new Date().getTime() + ".png");
             character.setId(CharacterData.getInstance(this).add(character));
         }
         data.setMainCharacter(character.getId());

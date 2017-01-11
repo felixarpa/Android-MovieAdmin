@@ -2,6 +2,7 @@ package idi.felixjulen.movieadmin.presentation.controller.listView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import idi.felixjulen.movieadmin.R;
 import idi.felixjulen.movieadmin.domain.controller.FilmData;
 import idi.felixjulen.movieadmin.domain.model.Film;
 import idi.felixjulen.movieadmin.presentation.adapter.FilmRecyclerViewAdapter;
+import idi.felixjulen.movieadmin.presentation.controller.BaseViewController;
+import idi.felixjulen.movieadmin.presentation.controller.SplashViewController;
 import idi.felixjulen.movieadmin.presentation.controller.editEntityView.MovieEditViewController;
 import idi.felixjulen.movieadmin.presentation.controller.singleEntityView.MovieViewController;
 
@@ -168,6 +171,14 @@ public class MovieListViewController extends EntityListViewController<Film> impl
                 optionMenu.findItem(R.id.purge_done_item).setVisible(false);
                 optionMenu.findItem(R.id.purge_item).setVisible(true);
                 fab.setVisibility(View.VISIBLE);
+                break;
+
+            case R.id.purge_db_item:
+                SharedPreferences.Editor editor = getSharedPreferences(BaseViewController.sharedPreferencesName, 0).edit();
+                editor.putBoolean(BaseViewController.firstUsage, true);
+                editor.apply();
+                startActivity(new Intent(this, SplashViewController.class));
+                finish();
         }
 
         return super.onOptionsItemSelected(item);

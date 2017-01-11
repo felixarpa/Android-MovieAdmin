@@ -67,11 +67,9 @@ public abstract class EntityViewController<T extends Entity> extends AppCompatAc
         TextView nameView = (TextView) findViewById(R.id.name);
         nameView.setText(data.getName());
 
-        if (data.getImage() != null) {
-            ImageView imageView = (ImageView) findViewById(R.id.image);
-            Bitmap image = FileManager.getInstance(this).loadImageFromStorage(data.getImage(), R.mipmap.profile);
-            imageView.setImageBitmap(image);
-        }
+        ImageView imageView = (ImageView) findViewById(R.id.image);
+        Bitmap image = FileManager.getInstance(this).loadImageFromStorage(data.getImage(), R.mipmap.profile);
+        imageView.setImageBitmap(image);
 
     }
 

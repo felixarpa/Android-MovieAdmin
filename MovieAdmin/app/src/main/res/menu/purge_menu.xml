@@ -14,4 +14,10 @@
         android:title="@string/done"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/purge_db_item"
+        android:icon="@drawable/refresh"
+        android:title="@string/reset_db"
+        app:showAsAction="never" />
+
 </menu>

@@ -107,6 +107,8 @@ Modificar nota (i molt més)
 Dins de la vista detallada d\'una entitat pots editar tots els seus paràmetres clicant el llapis que es mostra a la part superior.\n
 Un cop editant, per canviar la foto, simplement clica la foto i podràs fer una foto nova o escollir una de la teva galeria.
     </string>
+    <string name="reset_db">Reset database</string>
+    <string name="loading">Loading…</string>
 
     <string-array name="countries_array">
         <item>United States</item>
